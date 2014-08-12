@@ -9,7 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
+/**
+ * 用户上下文信息
+ * @author chengesheng@gmail.com
+ * @date 2014-8-12 下午4:40:06
+ * @version 1.0.0
+ */
 public class UserContext {
 
 	// 自定义SESSION，用于外部应用登录微博时保存【回调函数】
