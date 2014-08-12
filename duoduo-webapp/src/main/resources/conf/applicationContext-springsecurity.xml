@@ -175,8 +175,7 @@
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="myUserDetailsService" />
-		<beans:property name="hideUserNotFoundExceptions"
-			value="false" />
+		<beans:property name="hideUserNotFoundExceptions" value="false" />
 	</beans:bean>
 	<!--
 			一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
