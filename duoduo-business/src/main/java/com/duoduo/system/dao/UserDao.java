@@ -70,6 +70,7 @@ public class UserDao extends BaseDao {
 			User user = super.getJdbcTemplate().queryForObject(getByAccountSql, entityRowMapper, account);
 			return user;
 		} catch (DataAccessException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
