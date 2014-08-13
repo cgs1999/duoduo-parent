@@ -31,7 +31,7 @@ import com.duoduo.system.vo.ResourceVO;
  * @date 2014-3-19 下午6:18:13
  */
 @Controller
-@RequestMapping("/system/menu")
+@RequestMapping("/system/resource")
 public class ResourceController {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -41,7 +41,7 @@ public class ResourceController {
 
 	private String listPage = "menu/menu-list";
 	private String formPage = "menu/menu-form";
-	private String selectFromAllPage = "menu/selectFromAllMenu";
+	private String selectPage = "menu/select-menus";
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(ModelMap model) {
@@ -58,15 +58,15 @@ public class ResourceController {
 		return formPage;
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
 	public String form(ModelMap model, @PathVariable String id) {
 		load(model, id);
 		return formPage;
 	}
 
-	@RequestMapping(value = "/selectFromAllMenu", method = RequestMethod.GET)
+	@RequestMapping(value = "/selectMenus", method = RequestMethod.GET)
 	public String selectFromAll() {
-		return selectFromAllPage;
+		return selectPage;
 	}
 
 	@RequestMapping(value = "/getPageList", method = RequestMethod.POST)

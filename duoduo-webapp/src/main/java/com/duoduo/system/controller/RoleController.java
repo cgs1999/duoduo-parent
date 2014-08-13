@@ -42,7 +42,7 @@ public class RoleController {
 	private String listPage = "role/role-list";
 	private String formPage = "role/role-form";
 	private String readPage = "role/role-read";
-	private String selectFromAllPage = "role/selectFromAllRole";
+	private String selectPage = "role/select-roles";
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(ModelMap model) {
@@ -54,7 +54,7 @@ public class RoleController {
 		return formPage;
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
 	public String form(ModelMap model, @PathVariable String id) {
 		RoleVO roleVO = roleService.getById(id);
 
@@ -81,9 +81,9 @@ public class RoleController {
 		}
 	}
 
-	@RequestMapping(value = "/selectFromAllRole", method = RequestMethod.GET)
+	@RequestMapping(value = "/selectRoles", method = RequestMethod.GET)
 	public String selectFromAllRole(ModelMap model) {
-		return selectFromAllPage;
+		return selectPage;
 	}
 
 	@RequestMapping(value = "/getPageList", method = RequestMethod.POST)

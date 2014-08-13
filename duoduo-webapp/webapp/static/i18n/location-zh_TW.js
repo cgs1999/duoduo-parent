@@ -3,19 +3,10 @@ $.namespace("Mo.Menu");
 Mo.Menu = {
 	rootMenuId: -1,
 	allMenus: [
-		{"id":10,"name":"用户域服务","parentId":-1,"url":""},
-		{"id":1010,"name":"用户域信息","parentId":10,"url":"/service/domaininfo"},
-		{"id":1020,"name":"组织架构","parentId":10,"url":"/service/user"},
-		{"id":1030,"name":"管理员设定","parentId":10,"url":"/service/adminsetting"},
-		{"id":1040,"name":"监控设备管理","parentId":10,"url":"/service/monitor"},
-		{"id":1050,"name":"共享通讯录","parentId":10,"url":"/service/shareaddress"},
-		{"id":20,"name":"统计报表","parentId":-1,"url":""},
-		{"id":2010,"name":"点对点记录","parentId":20,"url":"/statistics/p2p"},
-		{"id":2020,"name":"多点记录","parentId":20,"url":"/statistics/multiple"},
-		{"id":2030,"name":"电话记录","parentId":20,"url":"/statistics/telephone"},
-		{"id":2040,"name":"会议统计","parentId":20,"url":"/statistics/total"},
-		{"id":30,"name":"订单业务","parentId":-1,"url":""},
-		{"id":3010,"name":"订单管理","parentId":30,"url":"/order/list"}
+		{"id":10,"name":"系统配置","parentId":-1,"url":""},
+		{"id":1010,"name":"资源管理","parentId":10,"url":"/system/resource/list"},
+		{"id":1020,"name":"角色管理","parentId":10,"url":"/system/role/list"},
+		{"id":1030,"name":"用户管理","parentId":10,"url":"/system/user/list"}
 	]
 };
 

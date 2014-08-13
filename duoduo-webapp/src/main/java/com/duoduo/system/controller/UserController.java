@@ -49,10 +49,10 @@ public class UserController {
 		return formPage;
 	}
 
-	@RequestMapping(value = "/{moid}", method = RequestMethod.GET)
-	public String form(ModelMap model, @PathVariable String moid) {
-		if (StringUtils.hasText(moid)) {
-			load(model, moid);
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	public String form(ModelMap model, @PathVariable String id) {
+		if (StringUtils.hasText(id)) {
+			load(model, id);
 		}
 		return formPage;
 	}

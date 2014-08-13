@@ -157,7 +157,7 @@ Mo.Dialog = {
 		}
 		
 		$.dialog.data('roleIds', objectIds.val());
-		$.dialog.open(Mo.Config.appUrl + "/system/role/selectFromAllRole", {
+		$.dialog.open(Mo.Config.appUrl + "/system/role/selectRoles", {
 			id: "selectRoleDialog",
 			lock: true,
 			opacity: 0.50,	// 透明度
@@ -194,7 +194,7 @@ Mo.Dialog = {
 		}
 		
 		$.dialog.data('menuIds', objectIds.val());
-		$.dialog.open(Mo.Config.appUrl + "/system/menu/selectFromAllMenu", {
+		$.dialog.open(Mo.Config.appUrl + "/system/menu/selectMenus", {
 			id: "selectMenuDialog",
 			lock: true,
 			opacity: 0.50,	// 透明度
