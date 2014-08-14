@@ -40,6 +40,7 @@ public class UserDao extends BaseDao {
 			user.setEmail(rs.getString("email"));
 			user.setPhone(rs.getString("phone"));
 			user.setStatus(rs.getInt("status"));
+			user.setMemo(rs.getString("memo"));
 			user.setCreateTime(rs.getTimestamp("create_time"));
 			user.setUpdateTime(rs.getTimestamp("update_time"));
 			return user;
@@ -75,8 +76,8 @@ public class UserDao extends BaseDao {
 		return null;
 	}
 
-	private static final String insertSql = "insert into sys_user(account,name,password,salt,email,phone,status,create_time,update_time) values"
-			+ "(?,?,?,?,?,?,?,now(),now())";
+	private static final String insertSql = "insert into sys_user(account,name,password,salt,email,phone,status,memo,create_time,update_time) values"
+			+ "(?,?,?,?,?,?,?,?,now(),now())";
 
 	/**
 	 * 创建用户
@@ -97,6 +98,7 @@ public class UserDao extends BaseDao {
 				ps.setString(count++, user.getEmail());
 				ps.setString(count++, user.getPhone());
 				ps.setObject(count++, user.getStatus());
+				ps.setString(count++, user.getMemo());
 				return ps;
 			}
 		}, keyHolder);
@@ -106,7 +108,7 @@ public class UserDao extends BaseDao {
 	}
 
 	private static final String updateSql = "update sys_user set account=?,name=?,password=?,"
-			+ "salt=?,email=?,phone=?,status=?,update_time=now() where id=?";
+			+ "salt=?,email=?,phone=?,status=?,memo=?,update_time=now() where id=?";
 
 	/**
 	 * 修改用户
@@ -114,7 +116,7 @@ public class UserDao extends BaseDao {
 	public void update(User user) {
 		Object[] args = new Object[] {
 				user.getAccount(), user.getName(), user.getPassword(), user.getSalt(), user.getEmail(),
-				user.getPhone(), user.getStatus(), user.getId()
+				user.getPhone(), user.getStatus(), user.getMemo(), user.getId()
 		};
 		super.getJdbcTemplate().update(updateSql, args);
 	}
@@ -197,64 +199,4 @@ public class UserDao extends BaseDao {
 		page.setRows(super.getNamedParameterJdbcTemplate().query(queryByPageSql, params, entityRowMapper));
 		return page;
 	}
-
-	// /**
-	// * 分页查询用户列表（模糊查询，条件为：帐号、姓名、电子邮箱、电话）
-	// */
-	// public Page<User> pagingList(String account, String name, String email, String phone, Page<User> page) {
-	// String countSql = "select count(id) from sys_user where 1=1";
-	// String queryByPageSql = "select * from sys_user where 1=1";
-	//
-	// if (StringUtils.hasText(account)) {
-	// countSql += " and account like ?";
-	// queryByPageSql += " and account like ?";
-	// }
-	//
-	// if (StringUtils.hasText(name)) {
-	// countSql += " and name like ?";
-	// queryByPageSql += " and name like ?";
-	// }
-	//
-	// if (StringUtils.hasText(email)) {
-	// countSql += " and email like ?";
-	// queryByPageSql += " and email like ?";
-	// }
-	//
-	// if (StringUtils.hasText(phone)) {
-	// countSql += " and phone like ?";
-	// queryByPageSql += " and phone like ?";
-	// }
-	//
-	// queryByPageSql += " limit ?,?";
-	//
-	// String likeAccount = super.filterKey(account);
-	// String likeName = super.filterKey(name);
-	// String likeEmail = super.filterKey(email);
-	// String likePhone = super.filterKey(phone);
-	// page.setTotal(super.getTotalCount(countSql, likeAccount, likeName, likeEmail, likePhone));
-	// page.setRows(super.getJdbcTemplate().query(queryByPageSql, entityRowMapper, likeAccount, likeName, likeEmail,
-	// likePhone, page.getStart(), page.getLimit()));
-	// return page;
-	// }
-	//
-	// /**
-	// * 分页查询用户列表（关键字模糊查询，模糊查询内容：帐号、姓名、电子邮箱、电话）
-	// */
-	// public Page<User> pagingList(String key, Page<User> page) {
-	// String countSql = "select count(id) from sys_user where 1=1";
-	// String queryByPageSql = "select * from sys_user where 1=1";
-	//
-	// if (StringUtils.hasText(key)) {
-	// countSql += " and ((account like ?) or (name like ?) or (email like ?) or (phone like ?))";
-	// queryByPageSql += " and ((account like ?) or (name like ?) or (email like ?) or (phone like ?))";
-	// }
-	//
-	// queryByPageSql += " limit ?,?";
-	//
-	// String likeKey = super.filterKey(key);
-	// page.setTotal(super.getTotalCount(countSql, likeKey, likeKey, likeKey, likeKey));
-	// page.setRows(super.getJdbcTemplate().query(queryByPageSql, entityRowMapper, likeKey, likeKey, likeKey, likeKey,
-	// page.getStart(), page.getLimit()));
-	// return page;
-	// }
 }

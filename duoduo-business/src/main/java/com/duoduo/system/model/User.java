@@ -24,6 +24,8 @@ public class User extends IdEntity {
 	private String phone;
 	/** 状态 */
 	private Integer status;
+	/** 备注 */
+	private String memo;
 
 	public String getAccount() {
 		return account;
@@ -71,6 +73,14 @@ public class User extends IdEntity {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 }

@@ -33,6 +33,7 @@ public class TestHelper {
 		user.setPassword("888888");
 		user.setSalt(UUID.randomUUID().toString());
 		user.setStatus(1);
+		user.setMemo("备注");
 		return user;
 	}
 
@@ -46,6 +47,7 @@ public class TestHelper {
 		user.setPassword("888888");
 		user.setSalt(UUID.randomUUID().toString());
 		user.setStatus(0);
+		user.setMemo("备注");
 		return user;
 	}
 
@@ -147,6 +149,7 @@ public class TestHelper {
 		user.setPassword("888888");
 		user.setSalt(UUID.randomUUID().toString());
 		user.setStatus(1);
+		user.setMemo("备注");
 
 		user.setRoleIds(roleIds);
 		return user;
@@ -162,6 +165,7 @@ public class TestHelper {
 		user.setPassword("888888");
 		user.setSalt(UUID.randomUUID().toString());
 		user.setStatus(0);
+		user.setMemo("备注");
 
 		user.setRoleIds(roleIds);
 		return user;

@@ -24,6 +24,8 @@ public class UserVO extends BaseVO {
 	private String phone;
 	/** 状态 */
 	private Integer status;
+	/** 备注 */
+	private String memo;
 
 	// 角色信息
 	private String roleIds;
@@ -77,6 +79,14 @@ public class UserVO extends BaseVO {
 		this.status = status;
 	}
 
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 	public String getRoleIds() {
 		return roleIds;
 	}
@@ -108,6 +118,7 @@ public class UserVO extends BaseVO {
 		vo.setEmail(entity.getEmail());
 		vo.setPhone(entity.getPhone());
 		vo.setStatus(entity.getStatus());
+		vo.setMemo(entity.getMemo());
 		vo.setCreateTime(DateUtils.toDatetimeString(entity.getCreateTime()));
 		vo.setUpdateTime(DateUtils.toDatetimeString(entity.getUpdateTime()));
 		return vo;
@@ -128,6 +139,7 @@ public class UserVO extends BaseVO {
 		entity.setEmail(vo.getEmail());
 		entity.setPhone(vo.getPhone());
 		entity.setStatus(vo.getStatus());
+		entity.setMemo(vo.getMemo());
 		return entity;
 	}
 }

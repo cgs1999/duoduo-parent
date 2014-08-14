@@ -15,44 +15,15 @@
 
 <script>
 	var baseUrl = "${BMC_APP_URL}/system/user";
-	var serviceDomainUrl = "${BMC_APP_URL}/domain/serviceDomain";
 
 	$(function() {
 		Mo.gridDetail.init({
 			baseUrl: baseUrl,
-			selectedTreeMoid: -1,
-			treeOptions : {
-				url : serviceDomainUrl + "/listMyAdminTree",
-				onLoadSuccess : function(node,data) {
-					if(data.length>0) {
-						// 设置初始选定节点
-						var node = data[0];
-						if(node.id==-1) {
-							node = data[0].children[0];
-						}
-						// 获取选定节点的moid
-						Mo.gridDetail.selectedTreeMoid = node.attributes.moid;
-						// 加载数据
-						Mo.gridDetail.load();
-					}
-				},
-				onClick : function(node) {
-					// alert("id=" + node.id + ", moid=" + node.attributes.moid);
-					if(node.id==-1) {
-						return;
-					}
-					
-					// 获取选定节点的moid
-					Mo.gridDetail.selectedTreeMoid = node.attributes.moid;
-					// 加载数据
-					Mo.gridDetail.load();
-				}
-			},
 			datagridOptions : {
-				idField : "moid",
+				idField : "id",
 				url : baseUrl + "/getPageList",
 				columns : [ [ {
-					field : 'moid',
+					field : 'id',
 					hidden : true
 				}, {
 					field : 'name',
@@ -61,14 +32,6 @@
 					formatter : function(value,row,index){
 						return value ? value : row.account;
 					}
-				}, {
-					field : 'serviceDomainName',
-					title : '所属服务域',
-					width : 100
-				}, {
-					field : 'userDomainName',
-					title : '所属用户域',
-					width : 100
 				}, {
 					field : 'email',
 					title : '邮箱',
@@ -91,16 +54,10 @@
 				} ] ],
 
 				onBeforeLoad:function(params){
-					if(Mo.gridDetail.selectedTreeMoid==-1) {
-						return false;
-					}
-					
-					params.serviceDomainMoid = Mo.gridDetail.selectedTreeMoid;
-					params.serviceDomainName = "";
-					params.userDomainName = Mo.gridDetail.getMoInputVal("#userDomainName");
-					params.userName = Mo.gridDetail.getMoInputVal("#userName");
+					params.account = Mo.gridDetail.getMoInputVal("#account");
+					params.name = Mo.gridDetail.getMoInputVal("#name");
 					params.email = Mo.gridDetail.getMoInputVal("#email");
-					params.mobile = Mo.gridDetail.getMoInputVal("#mobile");
+					params.phone = Mo.gridDetail.getMoInputVal("#phone");
 					params.start = (params.page-1)*params.rows;
 					params.limit = params.rows;
 				}
@@ -126,26 +83,16 @@
 </script>
 
 <body id="grid-panel" class="easyui-layout" data-options="fit:true">
-	<div data-options="region:'west',border:false,width:165" style="padding-right:54px;">
-		<div  class="easyui-layout" data-options="fit:true" >
-			<div data-options="region:'north',border:false,height:10" style="overflow:hidden">
-			</div>
-			<div data-options="region:'center',border:false">
-				<div id="mytree" class="nav-tree"></div>
-			</div>
-		</div>
-	</div>
-	
 	<div data-options="region:'center',border:false">
 		<table id="data-grid"></table>
 	</div>
 
 	<div id="tb" class="inline">
 		<div class="search-bar toolbar">
-			<input type="text" id="userDomainName" name="userDomainName" class="input-text" mo-hint="请输入用户域名称" maxlength="20">
-			<input type="text" id="userName" name="userName" class="input-text sep" mo-hint="姓名" maxlength="20">
+			<input type="text" id="account" name="account" class="input-text" mo-hint="请输入帐号" maxlength="20">
+			<input type="text" id="name" name="name" class="input-text sep" mo-hint="姓名" maxlength="20">
 			<input type="text" id="email" name="email" class="input-text sep" mo-hint="邮箱" maxlength="20">
-			<input type="text" id="mobile" name="mobile" class="input-text sep" mo-hint="手机" maxlength="20">
+			<input type="text" id="phone" name="phone" class="input-text sep" mo-hint="手机" maxlength="20">
 			<a href="javascript: doSearch()" class="easyui-linkbutton sep" iconCls="icon-search" plain="true"></a>
 		</div>
 		<div class="operate-bar">
