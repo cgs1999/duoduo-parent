@@ -11,6 +11,7 @@ CREATE TABLE `sys_user` (
   `email` varchar(50) NOT NULL COMMENT '电子邮箱',
   `phone` varchar(30) DEFAULT NULL COMMENT '联系电话',
   `status` int(1) NOT NULL DEFAULT '0' COMMENT '状态',
+  `memo` varchar(200) DEFAULT NULL COMMENT '备注',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`),
