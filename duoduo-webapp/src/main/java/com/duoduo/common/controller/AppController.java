@@ -1,27 +1,42 @@
 package com.duoduo.common.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.duoduo.security.context.SessionUser;
+import com.duoduo.security.context.UserContext;
+import com.duoduo.system.Constants;
+import com.duoduo.system.service.ResourceService;
+import com.duoduo.system.vo.ResourceVO;
 
 @Controller
 public class AppController {
 
-	private static Logger log = LoggerFactory.getLogger(AppController.class);
+	private Logger log = LoggerFactory.getLogger(getClass());
 
-	@RequestMapping(value = "/home")
-	public String index() {
-		// log.info("index.......");
-		// Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		// WebAuthenticationDetails webAuth = (WebAuthenticationDetails) auth.getDetails();
-		// log.info("当前登录用户ip:" + webAuth.getRemoteAddress());
-		// log.info("当前登录用户的sessionId:" + webAuth.getSessionId());
-		// User user = (User) auth.getPrincipal();
-		//
-		// log.info("当前登录用户权限：" + user.getAuthorities());
-		return "home";
+	private String homePage = "/home";
+
+	@javax.annotation.Resource
+	private ResourceService resourceService;
+
+	@RequestMapping("/home")
+	public String toHome(HttpServletRequest request, ModelMap model) {
+		SessionUser currentUser = UserContext.getCurrentUser();
+		List<ResourceVO> allMenus = resourceService.listByUserId("" + currentUser.getUser().getId());
+		model.addAttribute("currentUser", currentUser);
+		model.addAttribute("rootMenuId", Constants.ROOT_MENU_ID);
+		model.addAttribute("allMenus", JSONArray.fromObject(allMenus).toString());
+		return homePage;
 	}
 
 	@RequestMapping(value = "/common")

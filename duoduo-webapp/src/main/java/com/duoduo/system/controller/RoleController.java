@@ -54,7 +54,7 @@ public class RoleController {
 		return formPage;
 	}
 
-	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
 	public String form(ModelMap model, @PathVariable String id) {
 		RoleVO roleVO = roleService.getById(id);
 

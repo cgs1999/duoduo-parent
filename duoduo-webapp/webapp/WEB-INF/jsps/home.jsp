@@ -3,75 +3,79 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title>账号管理中心</title>
+  <title><spring:message code="home.head.title" /></title>
   <!-- 通用部分 -->
   <%@ include file="/inc/common/page_base_css.jsp"%>
   <%@ include file="/inc/common/page_base_js.jsp"%>
   <!-- 插件部分 -->
   <%@ include file="/inc/plugins/plugin_artdialog.jsp"%>
   <!-- 本地 -->
-  <script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/mainFrame.js?t=5.0.3316434933"></script>
+  <script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/common.js?t=5.0.2486659314"></script>
+  <script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/mainFrame.js?t=5.0.283143827"></script>
  </head>
  
 <script>
+$.namespace("Mo.Config");
+Mo.Config = {
+	appUrl: "${BMC_APP_URL}",
+	staticUrl:"${RESOUCE_STATIC_URL}",
+	rootMenuId: ${rootMenuId},
+	allMenus: ${allMenus}
+};
+
 $(function(){
     Mo.Home.init();
-});
+})
+
+
+
 </script>
 
 <body>
 <div id="wrap-all" class="wrap-all">
 	<div id="header" class="hd-main">
-		<a class="logo" href="#">/ 账号管理中心</a>
-    <div class="info">
-      <a class="info-i user-info"><s></s>${currentUser.username}</a>
-      <div class="info-i setting">
-			<a class="info-i setting-info icon">设置</a>
-			<div class="pulldown setting-list" style="display:none">
-          		<div class="pulldown-arrow"></div>
-					<div class="content">
-						<span class="li"><a id="modifyTimeZone" href="javascript:"><s></s>GMT + 8</a></span>
-						<span class="li"><a id="modifyUser" href="javascript:"><s></s>个人信息</a></span>
-						<span class="li"><a id="modifyPassword" href="javascript:"><s></s>修改密码</a></span>
-						<span class="li"><a id="about" href="javascript:"><s></s>关于</a></span>
-						<span class="li"><a id="help" href="javascript:"><s></s>帮助信息</a></span>
-						<span class="li"><a id="modifyLanguage" href="javascript:"><s></s>简体中文</a></span>
+		<div class="header-logo">
+			<span class="ent"></span>
+			<span class="sep">|</span>
+			<span class="sys"><spring:message code="home.header.logo"/></span>
+		</div>
+		<div class="info">
+      <a class="info-i user-info"><s></s>${currentUser.user.name }</a><div class="info-i setting setting-info" title="<spring:message code='home.header.nav.setting' />">
+					<span class="text setting"></span>
+					<div class="pulldown setting-list" style="display: none">
+						<div class="content">
+							<span class="li">
+								<a id="modifyUser" href="javascript:void(0);" title="<spring:message code='home.header.nav.setting.user' />"><spring:message code='home.header.nav.setting.user' /></a>
+							</span>
+							<span class="li">
+								<a id="modifyPassword" href="javascript:void(0);" title="<spring:message code='home.header.nav.setting.password' />"><spring:message code='home.header.nav.setting.password' /></a>
+							</span>
+							<span class="li">
+								<a id="about" href="javascript:void(0);" title="<spring:message code='home.about.title' />"><spring:message code='home.about.title' /></a>
+							</span>
+						</div>
 					</div>
-				</div>
-			</div><a class="info-i logout logout-info icon">退出</a>
-    </div>
-    <div class="navs">
-       <a class="navs-i">首页</a>
-       <a class="easyui-splitbutton navs-i" data-options="menu:'.more-systems'">账号管理中心<b></b></a>
-			<div class="more-systems" style="display: none">
-				<div>会议管理系统</div>
-				<div>业务管理中心</div>
-				<div>网络管理中心</div>
-				<div>企业微博系统</div>
-			</div>
+			</div><a class="info-i logout" title="<spring:message code='home.header.nav.logout' />"></a>
     </div>
 	</div>
  
 	<div id="inner-main" class="inner-main">
     <div id="inner-main-content" class="inner-main-content">
-    <div class="line"></div>
 	  <div id="main-nav" class="main-nav">
 		<ul>
-			<li><a herf=""></a></li>
+        <li><a herf="">导航1</a></li>
 		</ul>
 	  </div>
 	  <div id="main-content">
 		  <iframe id="main-frame" src="welcome.jsp" name="main-frame" border="0" frameborder="no"></iframe>
 	  </div>
-    <div class="line"></div>
 			<div id="detail-content" style="display:none;">
 				<iframe id="detail-frame" src="welcome.jsp" name="detail-frame" border="0" frameborder="no"></iframe>
-				<!-- <a id="e-bn-fold" class="icon" href="javascript:;"></a> -->
+				<a id="e-bn-fold" class="icon" href="javascript:;"></a>
 			</div>
 		</div>
-    <div id="aside" class="aside">
+		<div id="aside" class="aside" style="overflow-y: hidden;">
 			<div class="aside-content">
-        <div class="line"></div>
 				<div class="search-div">
           			<input type="text" class="search-input">
 				</div>
@@ -79,31 +83,23 @@ $(function(){
 				<div id="divAsideMenu" class="aside-menu"></div>
 			</div>
 		</div>
-	</div>	
-</div>  
-<div style="display:none">
+	</div>
+	
 	<div id="modifyUserWrapper">
-		<div class="modifyUser-content mo-dialog-content">
+		<div class="mofiyUser-content">
 			<div class="title">
 				<span><spring:message code='home.user.modify.title' /></span>
 				<a href="javascript:void(0);" class="W_close" hidefocus="true"></a>
-				<input type="hidden" id="oldAccount" name="oldAccount" value="${currentUser.user.account }"/>
-				<input type="hidden" id="oldMobile" name="oldMobile" value="${currentUser.user.mobile }"/>
+				<input type="text" id="account" name="account" class="input-text" value="${currentUser.user.account }" />
+				<input type="hidden" id="oldName" name="oldName" value="${currentUser.user.name }"/>
 				<input type="hidden" id="oldEmail" name="oldEmail" value="${currentUser.user.email }"/>
-				<input type="hidden" id="oldOfficeLocation" name="oldOfficeLocation" value="${currentUser.user.officeLocation }"/>
 			</div>
 			<div class="separater"></div>
-			<div class="info clearfix">
+			<div class="info">
 				<div class="setting-item">
 					<label><spring:message code='home.user.modify.label.account' /></label>
 					<div class="setting-item-main">
-						<input type="text" id="account" name="account" class="input-text" value="${currentUser.user.account }" />
-					</div>
-				</div>
-				<div class="setting-item">
-					<label><spring:message code='home.user.modify.label.mobile' /></label>
-					<div class="setting-item-main">
-						<input type="text" id="mobile" name="mobile" class="input-text" value="${currentUser.user.mobile }" />
+						<input type="text" id="name" name="name" class="input-text" value="${currentUser.user.name }" />
 					</div>
 				</div>
 				<div class="setting-item">
@@ -112,25 +108,19 @@ $(function(){
 						<input type="text" id="email" name="email" class="input-text" value="${currentUser.user.email }" />
 					</div>
 				</div>
-				<div class="setting-item">
-					<label><spring:message code='home.user.modify.label.address' /></label>
-					<div class="setting-item-main">
-						<input type="text" id="officeLocation" name="officeLocation" class="input-text" value="${currentUser.user.officeLocation }" />
-					</div>
-				</div>
 				<div class="item-msg">
 					<div class="msg"></div>
 				</div>
 				<div class="btn-wrapper">
-					<a class="btn-gray confirm btn-x btn-x-left" href="javascript:"><spring:message code='home.user.modify.btn.confirm' /></a>
-					<a class="btn-gray cancel btn-x" href="javascript:"><spring:message code='home.user.modify.btn.cancel' /></a>
+					<a class="btn-blue confirm btn-x btn-x-left" ><spring:message code='home.user.modify.btn.confirm' /></a>
+					<a class="btn-white cancel btn-x"><spring:message code='home.user.modify.btn.cancel' /></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div id="modifyPasswordWrapper">
-		<div class="modifyPassword-content mo-dialog-content">
+		<div class="mofidyPassword-content">
 			<div class="title">
 				<span><spring:message code='home.password.modify.title' /></span>
 				<a href="javascript:void(0);" class="W_close" hidefocus="true"></a>
@@ -147,10 +137,11 @@ $(function(){
 					<label><spring:message code='home.password.modify.label.newPassword' /></label>
 					<div class="setting-item-main">
 						<input type="password" id="newPassword" name="newPassword" class="input-text item-new-password" value="" />
-						<div class="text-tips"><spring:message code='home.password.modify.info.password.format' /></div>
 					</div>
 				</div>
-
+				<div class="password-message">
+					<div><span><spring:message code='home.password.modify.info.password.format' /></span></div>
+				</div>
 				<div class="setting-item">
 					<label><spring:message code='home.password.modify.label.conPassword' /></label>
 					<div class="setting-item-main">
@@ -161,15 +152,15 @@ $(function(){
 					<div class="msg"></div>
 				</div>
 				<div class="btn-wrapper">
-					<a class="btn-gray confirm btn-x btn-x-left" href="javascript:"><spring:message code='home.password.modify.btn.confirm' /></a>
-					<a class="btn-gray cancel btn-x" href="javascript:"><spring:message code='home.password.modify.btn.cancel' /></a>
+					<a class="btn-blue confirm btn-x btn-x-left" ><spring:message code='home.password.modify.btn.confirm' /></a>
+					<a class="btn-white cancel btn-x"><spring:message code='home.password.modify.btn.cancel' /></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div id="aboutWrapper">
-		<div class="about-content mo-dialog-content">
+		<div class="about-content">
 			<div class="title">
 				<span>关于</span>
 				<a href="javascript:void(0);" class="W_close" hidefocus="true"></a>
@@ -184,7 +175,7 @@ $(function(){
 	</div>
 	
 	<div id="logoutWrapper">
-		<div class="logout-content mo-dialog-content">
+		<div class="logout-content">
 			<div class="title">
 				<span>退出系统</span>
 				<a href="javascript:void(0);" class="W_close" hidefocus="true"></a>
@@ -193,14 +184,13 @@ $(function(){
 			<div class="info">
 				<div class="msg"><span>确认退出系统？</span></div>
 				<div class="btn-wrapper">
-					<a class="btn-gray confirm btn-x btn-x-left" href="javascript:">确认</a>
-					<a class="btn-gray cancel btn-x" href="javascript:">取消</a>
+					<a class="btn-blue confirm btn-x btn-x-left" >确认</a>
+					<a class="btn-white cancel btn-x">取消</a>
 				</div>
 			</div>
 			
 		</div>
 	</div>
-
-</div>             
+</div>               
 </body>
 </html>

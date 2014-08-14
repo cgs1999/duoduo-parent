@@ -1,67 +1,71 @@
 $.namespace("Mo.Frame");
 Mo.Frame = {
-	//default_detail_paddingTop : 56, // 默认详细表单顶部偏移量
-	//default_detail_paddingLeft : 244, // 默认详细表单左边偏移量
-	default_detail_paddingTop : 0, // 默认详细表单顶部偏移量
-	default_detail_paddingLeft : 0, // 默认详细表单左边偏移量
-    detail_paddingTop: this.default_detail_paddingTop,
-    detail_paddingLeft: this.default_detail_paddingLeft,
-    main_min_width:1256,
-    main_padding_left:128,
-    main_min_height:400,
-    main_padding_bottom:68,
-    main_top_height:98,
+	main_min_width : 1024,
+	bottom_fix_height : 0,
+	default_detail_paddingTop : 36, // 默认详细表单顶部偏移量
+	default_detail_paddingLeft : 203, // 默认详细表单左边偏移量, 1024-221-600
+	detail_paddingTop : this.default_detail_paddingTop,
+	detail_paddingLeft : this.default_detail_paddingLeft,
 
-    fixLineHeight:2,
+	init : function() {
+		this.setSize();
+		this.initEvent();
+	},
 
-    init:function(){
-        this.setSize();
-        this.initEvent();
-    },
+	initEvent : function() {
+		var that = this;
+		$(window).resize(function() {
+			that.setSize();
+		});
+	},
 
-    initEvent:function(){
-        var that = this;
-        $(window).resize(function(){
-            that.setSize();
-        })
-    },
+	setSize : function() {
+		var win = this.getWindowSize();
+		$("#wrap-all").width(win.w);
+		$("#wrap-all").height(win.h);
 
-    setSize:function(){
-       var win = this.getWindowSize();
-       if(win.w<this.main_min_width){
-          win.w = this.main_min_width;
-       }
+		if (win.w < this.main_min_width) {
+			win.w = this.main_min_width;
+		}
 
-      if(win.h<this.main_min_height){
-          //win.h = this.main_min_height;
-       }
+		$header = $("#header");
+		$("#header").width(
+				win.w - parseFloat($header.css('padding-right'))
+						- parseFloat($header.css('padding-left')));
 
-       var wrapW = win.w-(this.main_padding_left*2);
-       var wrapH = win.h;
-       $(".wrap-all").width(wrapW);
-       $(".wrap-all").height(win.h);
-       var innerHeight = win.h-this.main_top_height-this.main_padding_bottom;
-       $("#inner-main").height(innerHeight);
-       var viewHeight = innerHeight-(this.fixLineHeight*2);
+		var viewHeight = win.h - this.getHeaderH() - this.bottom_fix_height;
+		$("#inner-main").width(win.w);
+		$("#inner-main").height(viewHeight);
 
-	   $("#main-content").height(viewHeight);
-       $("#detail-content").css("top",this.detail_paddingTop+this.fixLineHeight);
-       $("#detail-content").height(viewHeight-this.detail_paddingTop);
-       var viewDetailWidth =  $("#main-content").width()-this.detail_paddingLeft;
+		var viewDetailWidth = win.w - this.getSideW() - this.detail_paddingLeft;
+		this.viewDetailWidth = viewDetailWidth;
 
-       $("#detail-content").width(viewDetailWidth);
-    },
+		var navH = $("#main-nav").outerHeight();
 
-    getWindowSize:function(){
-        var w = ($(window).width());
-        var h = ($(window).height());
-        return {w:w,h:h};
-    },
+		$("#main-content").height(viewHeight - navH);
+		$("#detail-content").css("top", this.detail_paddingTop + navH);
+		$("#detail-content").height(viewHeight - navH - this.detail_paddingTop);
+		$("#detail-content").width(viewDetailWidth);
 
-    getSideW:function(){
-      return ($("#aside").outerWidth());
-    }
-}
+	},
+
+	getWindowSize : function() {
+		var w = ($(window).width());
+		var h = ($(window).height());
+		return {
+			w : w,
+			h : h
+		};
+	},
+
+	getHeaderH : function() {
+		return ($("#header").outerHeight());
+	},
+
+	getSideW : function() {
+		return ($("#aside").outerWidth());
+	}
+};
 
 Mo.Frame.controller = {
 	mainFrameTag : "main-frame",
@@ -150,12 +154,9 @@ Mo.Frame.controller = {
 	},
 
 	showDetail : function(paddingTop, paddingLeft) {
-		if(typeof(paddingTop) == "undefined") {
-			paddingTop = Mo.Frame.detail_paddingTop;
-		}
-		if(typeof(paddingLeft) == "undefined") {
-			paddingLeft = Mo.Frame.detail_paddingLeft;
-		}
+
+		paddingTop = paddingTop || Mo.Frame.default_detail_paddingTop;
+		paddingLeft = paddingLeft || Mo.Frame.default_detail_paddingLeft;
 		if (Mo.Frame.detail_paddingTop != paddingTop || Mo.Frame.detail_paddingLeft != paddingLeft) {
 			this.setDetailSize(paddingTop, paddingLeft);
 		}
@@ -171,16 +172,8 @@ Mo.Frame.controller = {
 	},
 
 	setDetailSize : function(paddingTop, paddingLeft) {
-		if(typeof(paddingTop) == "undefined") {
-			Mo.Frame.detail_paddingTop = Mo.Frame.default_detail_paddingTop;
-		} else {
-			Mo.Frame.detail_paddingTop = paddingTop;
-		}
-		if(typeof(paddingLeft) == "undefined") {
-			Mo.Frame.detail_paddingLeft = Mo.Frame.default_detail_paddingLeft;
-		} else {
-			Mo.Frame.detail_paddingLeft = paddingLeft;
-		}
+		Mo.Frame.detail_paddingTop = paddingTop || Mo.Frame.default_detail_paddingTop;
+		Mo.Frame.detail_paddingLeft = paddingLeft || Mo.Frame.default_detail_paddingLeft;
 		Mo.Frame.setSize();
 	},
 
@@ -193,7 +186,6 @@ Mo.Frame.controller = {
 			left : $("#inner-main").width()
 		}, this.showHideTime, function() {
 			$(this).hide();
-			$("#detail-frame")[0].src = "about:blank";
 		});
 	}
 };
@@ -264,25 +256,10 @@ Mo.Home = {
 
 		//page
 		Mo.Home.asideMenu.init();
-		//Mo.Home.modifyUser.init();
-		//Mo.Home.modifyPassword.init();
-		//Mo.Home.exit.init();
-		//Mo.Home.about.init();
-		$("#modifyUser").bind("click", function(){
-			Mo.Dialog.showSetting();
-		});
-		
-		$("#modifyPassword").bind("click", function(){
-			Mo.Dialog.showModifyPassword();
-		});
-		
-		$("#about").bind("click", function(){
-			Mo.Dialog.showAbout();
-		});
-		
-		$(".logout", "#header").bind("click", function(){
-			Mo.Dialog.showLogout();
-		});
+		Mo.Home.modifyUser.init();
+		Mo.Home.modifyPassword.init();
+		Mo.Home.exit.init();
+		Mo.Home.about.init();
 	}
 };
 
@@ -293,7 +270,7 @@ Mo.Home.asideMenu={
 		this.initEvent();
 	},
 	initMenu: function() {
-		var data = Mo.Menu.allMenus;
+		var data = Mo.Config.allMenus;
 
 		var html = "";
 		var rootMenus = this.getRootMenus(data);
@@ -320,7 +297,7 @@ Mo.Home.asideMenu={
 		
 	},
 	getRootMenus: function(data) {
-		return this.getSubMenus(data, Mo.Menu.rootMenuId);
+		return this.getSubMenus(data, Mo.Config.rootMenuId);
 	},
 	getSubMenus: function(data, parentId) {
 		var menus = [];
@@ -344,7 +321,7 @@ Mo.Home.asideMenu={
 };
 
 
-/*
+
 //修改用户信息
 Mo.Home.modifyUser = {
 	init: function(){
@@ -616,4 +593,3 @@ Mo.Home.about={
 		$.dialog({id: 'aboutWindow'}).close();
 	}
 };
-*/
