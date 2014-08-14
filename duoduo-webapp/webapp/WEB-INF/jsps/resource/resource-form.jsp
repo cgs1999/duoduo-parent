@@ -14,7 +14,7 @@
  </head>
 
 <script type="text/javascript">
-	var baseUrl = "${BMC_APP_URL}/system/menu";
+	var baseUrl = "${BMC_APP_URL}/system/resource";
 	var parentId = ${parentId};
 	var rootMenuId = ${rootMenuId};
 	var rootMenus = ${rootMenus};

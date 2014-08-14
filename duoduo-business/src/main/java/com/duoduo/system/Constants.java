@@ -9,7 +9,7 @@ package com.duoduo.system;
 public class Constants {
 
 	// 根菜单ID
-	public static final long ROOT_MENU_ID = -1l;
+	public static final long ROOT_MENU_ID = 0;
 
 	// 角色类型定义，分：系统角色和自定义角色
 	public static final String SYSTEM_ROLE = "1";

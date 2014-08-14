@@ -14,7 +14,7 @@
  </head>
 
 <script>
-	var baseUrl = "${BMC_APP_URL}/system/menu";
+	var baseUrl = "${BMC_APP_URL}/system/resource";
 
 	$(function() {
 		Mo.gridDetail.init({
@@ -27,12 +27,26 @@
 					hidden : true
 				}, {
 					field : 'name',
-					title : '菜单名称',
+					title : '资源名称',
 					width : 100
 				}, {
-					field : 'parentName',
-					title : '上级菜单',
+					field : 'type',
+					title : '资源类型',
 					width : 100,
+					formatter : function(value,row,index){
+						if(value==1) {
+							return "菜单";
+						}
+						if(value==2) {
+							return "操作";
+						}
+						return "URL";
+					}
+				}, {
+					field : 'parentName',
+					title : '上级资源',
+					width : 100,
+					hidden : true,
 					formatter : function(value,row,index){
 						if(row.parentId==null || row.parentId=="") {
 							return "无";

@@ -39,9 +39,9 @@ public class ResourceController {
 	@Resource
 	private ResourceService resourceService;
 
-	private String listPage = "menu/menu-list";
-	private String formPage = "menu/menu-form";
-	private String selectPage = "menu/select-menus";
+	private String listPage = "resource/resource-list";
+	private String formPage = "resource/resource-form";
+	private String selectPage = "resource/select-menus";
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(ModelMap model) {
@@ -58,7 +58,7 @@ public class ResourceController {
 		return formPage;
 	}
 
-	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
 	public String form(ModelMap model, @PathVariable String id) {
 		load(model, id);
 		return formPage;

@@ -62,7 +62,7 @@
  </head>
 
 <script>
-	var baseUrl = "${BMC_APP_URL}/system/menu";
+	var baseUrl = "${BMC_APP_URL}/system/resource";
 
 	$.namespace("Mo.gridDetail");
 	Mo.gridDetail = {

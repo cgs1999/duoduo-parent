@@ -117,6 +117,7 @@ public class ResourceVO extends BaseVO {
 		vo.setType(entity.getType());
 		vo.setUrl(entity.getUrl());
 		vo.setParentId(entity.getParentId());
+		vo.setParentName(entity.getParentName());
 		vo.setParentIds(entity.getParentIds());
 		vo.setOrderIndex(entity.getOrderIndex());
 		vo.setEnable(entity.getEnable());
