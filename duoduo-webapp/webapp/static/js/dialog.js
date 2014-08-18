@@ -194,7 +194,7 @@ Mo.Dialog = {
 		}
 		
 		$.dialog.data('menuIds', objectIds.val());
-		$.dialog.open(Mo.Config.appUrl + "/system/menu/selectMenus", {
+		$.dialog.open(Mo.Config.appUrl + "/system/resource/selectMenus", {
 			id: "selectMenuDialog",
 			lock: true,
 			opacity: 0.50,	// 透明度

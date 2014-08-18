@@ -75,7 +75,7 @@
 				animate: true,
 				checkbox: true,
 				cascadeCheck: false,
-				url : baseUrl + "/listAllSimple",
+				url : baseUrl + "/listAllMenuSimple",
 				onLoadSuccess: function(node, data) {
 					// 初始化选中数据
 					initCheckData(data);

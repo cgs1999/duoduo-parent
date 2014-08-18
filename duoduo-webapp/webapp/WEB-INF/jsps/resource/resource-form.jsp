@@ -21,8 +21,10 @@
 	
 	$(function() {
 		Mo.SubFrame.init();
+
+		$('input[type="radio"]').ezMark();
 		
-		// 初始化上级菜单
+		// 初始化上级资源
 		initRootMenus();
 
 		// 保存
@@ -104,12 +106,14 @@
 			id : $('#id').val(),
 			parentId : $('#parentId').val(),
 			name : $.trim($('#name').val()),
+			type : $('input:radio[name=type]:checked').val()
 			url : $.trim($('#url').val()),
-			orderIndex : $.trim($('#orderIndex').val())
+			orderIndex : $.trim($('#orderIndex').val()),
+			enable : $('input:radio[name=enable]:checked').val()
 		};
 
 		if (data.name == "") {
-			alert('请输入菜单名称');
+			alert('请输入资源名称');
 			$('#name').focus();
 			return false;
 		}
@@ -128,12 +132,12 @@
 		var len = rootMenus.length;
 		if(len>0) {
 			for(var i=0; i<len; i++) {
-				// 若当前菜单为一级菜单，则不显示自己
+				// 若当前资源为一级资源，则不显示自己
 				if(rootMenus[i].id==$("#id").val()) {
 					continue;
 				}
 
-				// 设置下拉选项并选中其上级菜单
+				// 设置下拉选项并选中其上级资源
 				html += '<option value="' + rootMenus[i].id + '"' + ((rootMenus[i].id==parentId) ? ' selected="selected"' : '') + '>' 
 					+ rootMenus[i].name + '</option>';
 			}
@@ -152,7 +156,7 @@
 <div id="wrap-all" class="wrap-detail">
 	<div class="detail-body">
     <div class="detail-header">
-      <div class="title">菜单信息</div>
+      <div class="title">资源信息</div>
     </div>
 
     
@@ -164,7 +168,7 @@
             <table style="table-layout:fixed">
             <tbody>
               <tr>
-                <td class="title">菜单名称</td>
+                <td class="title">资源名称</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
                       <input class="e-input"  id="name" name="name" value="${data.name}" maxlength="50" />
@@ -180,13 +184,30 @@
             <table style="table-layout:fixed">
             <tbody>
               <tr>
-                <td class="title">上级菜单</td>
+                <td class="title">上级资源</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
                       <select id="parentId" name="parentId" class="e-input" style="width: 200px;"></select>
                     </div>
                 </td>
                 <td class="operate" style="padding: 4px;"></td>
+              </tr>
+            </table>
+          </li>
+          <li class="data-li">
+            <table style="table-layout:fixed">
+            <tbody>
+              <tr>
+                <td class="title">资源类型</td>
+                <td class="input">
+                    <div class="checkDiv">
+                      <input type="radio" id="typeT" name="type" value="1" <c:if test="${data.type}"> checked</c:if> />
+                      <label for="typeT">菜单</label>
+                      <input type="radio" id="typeF" name="type" value="2" <c:if test="${!data.type}"> checked</c:if> />
+                      <label for="typeF">URL</label>
+                    </div>
+                </td>
+                <td class="operate"></td>
               </tr>
             </table>
           </li>
@@ -212,6 +233,23 @@
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
                       <input class="e-input" id="orderIndex" name="orderIndex" value="${data.orderIndex}" maxlength="5" />
+                    </div>
+                </td>
+                <td class="operate"></td>
+              </tr>
+            </table>
+          </li>
+          <li class="data-li">
+            <table style="table-layout:fixed">
+            <tbody>
+              <tr>
+                <td class="title">用户状态</td>
+                <td class="input">
+                    <div class="checkDiv">
+                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${data.enable}"> checked</c:if> />
+                      <label for="enableT">启用</label>
+                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${!data.enable}"> checked</c:if> />
+                      <label for="enableF">禁用</label>
                     </div>
                 </td>
                 <td class="operate"></td>

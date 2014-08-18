@@ -18,7 +18,7 @@
 
 	$(function() {
 		Mo.SubFrame.init();
-    Mo.SubFrame.controller.setDetailSize(56,0);
+    	Mo.SubFrame.controller.setDetailSize(56,0);
 
 		$('input[type="radio"]').ezMark();
 		

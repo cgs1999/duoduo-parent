@@ -103,7 +103,7 @@ public class ResourceDao extends BaseDao {
 				ps.setString(count++, resource.getUrl());
 				ps.setObject(count++, resource.getParentId());
 				ps.setString(count++, resource.getParentIds());
-				ps.setInt(count++, resource.getOrderIndex());
+				ps.setInt(count++, (resource.getOrderIndex() == null ? 0 : resource.getOrderIndex()));
 				ps.setInt(count++, resource.getEnable() ? 1 : 0);
 				ps.setString(count++, resource.getMemo());
 				return ps;
