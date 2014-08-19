@@ -60,12 +60,17 @@ public class ResourceController {
 
 	@RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
 	public String form(ModelMap model, @PathVariable String id) {
+		List<ResourceVO> rootMenus = resourceService.listRootMenu();
+		model.addAttribute("parentId", Constants.ROOT_MENU_ID);
+		model.addAttribute("rootMenuId", Constants.ROOT_MENU_ID);
+		model.addAttribute("rootMenus", JSONArray.fromObject(rootMenus).toString());
+
 		load(model, id);
 		return formPage;
 	}
 
 	@RequestMapping(value = "/selectMenus", method = RequestMethod.GET)
-	public String selectFromAll() {
+	public String selectMenus() {
 		return selectPage;
 	}
 

@@ -73,12 +73,12 @@ $(document).ready(function(){
 					</div>
 					<div class="login">
 						<div class=" item item-account">
-							<input type="text" id="account" name="account" class="input-text input-login" value="" />
+							<input type="text" id="account" name="account" class="input-text input-login" value="admin" />
 							<label class="username-icon"></label>
 							<label class="reg-label" for="account"><spring:message code="login.content.login.label.account"/></label>
 						</div>
 						<div class="item item-password">
-							<input type="password" id="password" name="password" class="input-text input-login" value="" />
+							<input type="password" id="password" name="password" class="input-text input-login" value="888888" />
 							<label class="password-icon"></label>
 							<label class="reg-label" for="password"><spring:message code="login.content.login.label.password"/></label>
 						</div>

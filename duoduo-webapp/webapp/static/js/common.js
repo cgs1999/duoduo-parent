@@ -61,7 +61,7 @@ var regexEnum = {
 	name: "^[\u4e00-\u9fa5\\w]+$", // 中文、英文字母（大小写）、数字、“_“
 	password:"^[\\w\\.]+$", // 英文字母(大小写)、数字、“_”、“.”
 	mobile:"^[0-9]{11}$", // 数字
-	extNum:"^[0-9（）()\-，,；;*+#. ]{1,30}$" // 分机号码只允许"数字、（、）、，、-、；、*、+、#、空格、."！
+	extNum:"^[0-9（）()\\-，,；;*+#. ]{1,30}$" // 分机号码只允许输入"数字、（、）、，、-、；、*、+、#、空格、."！
 };
 
 //统一账号字符验证
@@ -74,7 +74,7 @@ Mo.Base.account = {
 		};
 		
 		if(!Mo.Base.validation.checkLength(value, 48)) {
-			alert("邮箱地址长度不能大于48个字符");
+			alert("邮箱地址长度不能大于48位字符");
 			return false;
 		}
 		
@@ -82,12 +82,12 @@ Mo.Base.account = {
 	},
 	checkAccount : function(value){
 		if (!Mo.Base.validation.isRegExp(regexEnum.account,value)) {
-			alert('用户名只允许中文、英文字母、数字、@、.或下划线字符!');
+			alert('用户名只允许输入中文、英文字母、数字、@、.或下划线字符');
 			return false;
 		};
 		
 		if(!Mo.Base.validation.checkLength(value, 48)) {
-			alert("用户名长度不能大于48个字符");
+			alert("用户名长度不能大于48位字符");
 			return false;
 		}
 		
@@ -95,12 +95,12 @@ Mo.Base.account = {
 	},
 	checkName : function(value){
 		if (!Mo.Base.validation.isRegExp(regexEnum.name,value)) {
-			alert('姓名只允许中文、英文字母、数字或下划线字符!');
+			alert('姓名只允许输入中文、英文字母、数字或下划线字符');
 			return false;
 		};
 		
 		if(!Mo.Base.validation.checkLength(value, 48)) {
-			alert("姓名长度不能大于48个字符");
+			alert("姓名长度不能大于48位字符");
 			return false;
 		}
 		
@@ -108,12 +108,12 @@ Mo.Base.account = {
 	},
 	checkPassword : function(value){
 		if (!Mo.Base.validation.isRegExp(regexEnum.password,value)) {
-			alert('密码只允许英文字母、数字、.或下划线字符!');
+			alert('密码只允许输入英文字母、数字、.或下划线字符');
 			return false;
 		};
 		
 		if(!Mo.Base.validation.checkLength(value, 32)) {
-			alert("密码长度不能大于32个字符");
+			alert("密码长度不能大于32位字符");
 			return false;
 		}
 		
@@ -121,7 +121,7 @@ Mo.Base.account = {
 	},
 	checkMobile : function(value){
 		if (!Mo.Base.validation.isRegExp(regexEnum.mobile,value)) {
-			alert('手机号码只允许11位数字!');
+			alert('手机号码只允许输入11位数字');
 			return false;
 		};
 		
@@ -129,7 +129,7 @@ Mo.Base.account = {
 	},
 	checkExtNum : function(value){
 		if (!Mo.Base.validation.isRegExp(regexEnum.mobile,value)) {
-			alert('分机号码只允许"数字、（、）、，、-、；、*、+、#、空格、."！');
+			alert('分机号码只允许输入"数字、（、）、，、-、；、*、+、#、空格、."');
 			return false;
 		};
 		

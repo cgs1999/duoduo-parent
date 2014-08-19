@@ -1,16 +1,4 @@
-/** 系统菜单 */
-$.namespace("Mo.Menu");
-Mo.Menu = {
-	rootMenuId: -1,
-	allMenus: [
-		{"id":10,"name":"系统配置","parentId":-1,"url":""},
-		{"id":1010,"name":"资源管理","parentId":10,"url":"/system/resource/list"},
-		{"id":1020,"name":"角色管理","parentId":10,"url":"/system/role/list"},
-		{"id":1030,"name":"用户管理","parentId":10,"url":"/system/user/list"}
-	]
-};
-
-/** 基础帮助类 */
+/** 基础帮助类 */;
 $.namespace("Mo.i18n");
 Mo.i18n = {
 	_lang:'zh-TW',
@@ -21,9 +9,8 @@ Mo.i18n = {
 	getLang:function(){
 		return Mo.i18n[this._lang];
 	}
-};
-
-/** 系统所用到的语言包 */
+}
+/** 系统所用到的语言包 */;
 Mo.i18n['zh-TW'] = {
 	test:"測試",
 	//登录模块start

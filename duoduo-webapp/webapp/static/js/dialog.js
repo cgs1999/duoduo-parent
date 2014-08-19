@@ -1,150 +1,7 @@
 $.namespace("Mo.Dialog");
 Mo.Dialog = {
-	// 关于对话框
-	showAbout : function(){
-		$.dialog.open(Mo.Config.appUrl + "/dialog/about", {
-			id: "showAboutDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			padding: 0,
-			width: 470,
-			height: 250,
-			close: function () {
-				//
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-	
-	// 设置对话框
-	showSetting : function(){
-		$.dialog.open(Mo.Config.appUrl + "/dialog/userinfo", {
-			id: "showSettingDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			padding: 0,
-			width: 490,
-			height: 407,
-			close: function () {
-				//
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-	
-	// 修改密码对话框
-	showModifyPassword : function(){
-		$.dialog.open(Mo.Config.appUrl + "/dialog/modifyPassword", {
-			id: "showModifyPasswordDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			padding: 0,
-			width: 490,
-			height: 394,
-			close: function () {
-				//
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-	
-	// 退出对话框
-	showLogout : function(){
-		$.dialog.open(Mo.Config.appUrl + "/dialog/logout", {
-			id: "showLogoutDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			padding: 0,
-			width: 390,
-			height: 260,
-			close: function () {
-				//
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-	
-	//选择部门对话框，返回多个值，以半角逗号分隔
-	selectDepartment : function(deptIdsId, deptNamesId, callback) {
-		var objectIds = $('#' + deptIdsId);
-		if(!objectIds) {
-			alert("部门id接收对象" + deptIdsId + "不存在！");
-			return;
-		}
-		var objectNames = $('#' + deptNamesId);
-		if(!objectNames) {
-			alert("部门名称接收对象" + deptNamesId + "不存在！");
-			return;
-		}
-		
-		$.dialog.data('idKey', "id");
-		$.dialog.data('ids', objectIds.val());
-		$.dialog.open(Mo.Config.appUrl + "/dialog/selectDepartment", {
-			id: "selectDepartmentDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			title: "选择部门",
-			padding: 0,
-			width: 360,
-			height: 440,
-			close: function () {
-				var deptIds = $.dialog.data('ids');
-				if(deptIds!=objectIds.val()) {
-					objectIds.val(deptIds);
-					objectNames.val($.dialog.data('names'));
-				}
-				if(typeof(callback)=="function") {
-					callback();
-				}
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-
-	// 选择人员对话框，返回多个值，以半角逗号分隔
-	selectUsers : function(userMoidsId, userNamesId, callback){
-		var objectIds = $('#' + userMoidsId);
-		if(!objectIds) {
-			alert("角色id接收对象" + userMoidsId + "不存在！");
-			return;
-		}
-		var objectNames = $('#' + userNamesId);
-		if(!objectNames) {
-			alert("角色名称接收对象" + userNamesId + "不存在！");
-			return;
-		}
-		
-		$.dialog.data('userMoids', objectIds.val());
-		$.dialog.open(Mo.Config.appUrl + "/dialog/selectUsers", {
-			id: "selectUsersDialog",
-			lock: true,
-			opacity: 0.50,	// 透明度
-			title: "选择人员",
-			padding: 0,
-			width: 720,
-			height: 520,
-			close: function () {
-				var userMoids = $.dialog.data('userMoids');
-				if(userMoids!=objectIds.val()) {
-					objectIds.val(userMoids);
-					objectNames.val($.dialog.data('userNames'));
-				}
-				if(typeof(callback)=="function") {
-					callback();
-				}
-			},
-			cancel:false, // 隐藏关闭按钮
-			drag: false // 不允许拖拽
-		}, false);
-	},
-
 	// 选择角色对话框，返回多个值，以半角逗号分隔
-	selectRoles : function(roleIdsId, roleNamesId, callback){
+	selectRoles : function(roleIdsId, roleNamesId){
 		var objectIds = $('#' + roleIdsId);
 		if(!objectIds) {
 			alert("角色id接收对象" + roleIdsId + "不存在！");
@@ -171,9 +28,6 @@ Mo.Dialog = {
 					objectIds.val(roleIds);
 					objectNames.val($.dialog.data('roleNames'));
 				}
-				if(typeof(callback)=="function") {
-					callback();
-				}
 			},
 			cancel:false, // 隐藏关闭按钮
 			drag: false // 不允许拖拽
@@ -181,7 +35,7 @@ Mo.Dialog = {
 	},
 
 	// 选择菜单对话框，返回多个值，以半角逗号分隔
-	selectMenus : function(menuIdsId, menuNamesId, callback) {
+	selectMenus : function(menuIdsId, menuNamesId) {
 		var objectIds = $('#' + menuIdsId);
 		if(!objectIds) {
 			alert("菜单id接收对象" + menuIdsId + "不存在！");
@@ -207,9 +61,6 @@ Mo.Dialog = {
 				if(menuIds!=objectIds.val()) {
 					objectIds.val(menuIds);
 					objectNames.val($.dialog.data('menuNames'));
-				}
-				if(typeof(callback)=="function") {
-					callback();
 				}
 			},
 			cancel:false, // 隐藏关闭按钮
@@ -257,7 +108,7 @@ Mo.Dialog = {
 	},
 	
 	// 选择平台域对话框，返回一个平台域的moid
-	selectPlatformDomain : function(platformDomainMoidId, platformDomainNameId, callback) {
+	selectPlatformDomain : function(platformDomainMoidId, platformDomainNameId) {
 		var objectId = $('#' + platformDomainMoidId);
 		if(!objectId) {
 			alert("平台域moid接收对象" + platformDomainMoidId + "不存在！");
@@ -284,9 +135,40 @@ Mo.Dialog = {
 					objectId.val(parentId);
 					objectName.val($.dialog.data('platformDomainName'));
 				}
-				
-				if(typeof(callback)=="function") {
-					callback();
+			},
+			cancel : false, // 隐藏关闭按钮
+			drag : false
+		// 不允许拖拽
+		}, false);
+	},
+	
+	// 选择PAS服务器对话框
+	selectPasServer : function(serverMoidId, serverNameId) {
+		var objectId = $('#' + serverMoidId);
+		if(!objectId) {
+			alert("服务器moid接收对象" + serverMoidId + "不存在！");
+			return;
+		}
+		var objectName = $('#' + serverNameId);
+		if(!objectName) {
+			alert("服务器名称接收对象" + serverNameId + "不存在！");
+			return;
+		}
+		
+		$.dialog.data('serverMoid', objectId.val());
+		$.dialog.open(Mo.Config.appUrl + "/domain/server/selectFromMyPasServer", {
+			id : "selectServerDialog",
+			lock : true,
+			opacity : 0.50, // 透明度
+			title : "选择服务器",
+			padding : 0,
+			width : 360,
+			height : 440,
+			close : function() {
+				var parentId = $.dialog.data('serverMoid');
+				if (parentId != objectId.val()) {
+					objectId.val(parentId);
+					objectName.val($.dialog.data('serverName'));
 				}
 			},
 			cancel : false, // 隐藏关闭按钮
@@ -295,7 +177,7 @@ Mo.Dialog = {
 		}, false);
 	},
 	
-	// 选择用户域对话框，返回一个平台域的moid
+	// 选择用户域对话框
 	selectUserDomain : function(userDomainMoidId, userDomainNameId, groupName, serviceDomainMoid, serviceDomainName, callback) {
 		var objectId = $('#' + userDomainMoidId);
 		if(!objectId) {
@@ -336,7 +218,9 @@ Mo.Dialog = {
 					groupName.val(gName);
 				}
 				
-				if(typeof callback == "function"){
+				// 如果是确定事件 
+				var action = $.dialog.data('action');
+				if(action == 'ok' && typeof callback == "function"){
 					callback();
 			    }
 			},
@@ -344,5 +228,37 @@ Mo.Dialog = {
 			drag : false
 		// 不允许拖拽
 		}, false);
+	},
+	
+	selectNumber: function(userDomainMoid, numberTypes, selectedNumbers, callback){
+		$.dialog.data('userDomainMoid', userDomainMoid);
+		$.dialog.data('numberTypes', numberTypes);
+		$.dialog.data('selectedNumbers', selectedNumbers);
+		var url = Mo.Config.appUrl + "/domain/order/selectNumber?userDomainMoid=" + userDomainMoid 
+			+ "&numberTypes=" + numberTypes + "&selectedNumbers=" + selectedNumbers;
+		$.dialog.open(url, {
+			id : "selectNumberWindow",
+			lock : true,
+			opacity : 0.50, // 透明度
+			title : "选择号码",
+			padding : 0,
+			width : 660,
+			height : 440,
+			close : function() {
+				// 如果是确定事件 
+				var action = $.dialog.data('action');
+				if(action == 'ok'){
+					if (typeof callback == "function") {
+						var numberObjs = $.dialog.data('numberObjs');
+						callback(numberObjs);
+					}
+			    }
+			},
+			cancel : false, // 隐藏关闭按钮
+			drag : false
+		// 不允许拖拽
+		}, false);
 	}
-};
+	
+}
+	

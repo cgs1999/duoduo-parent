@@ -141,7 +141,7 @@
 				html += '<option value="' + rootMenus[i].id + '"' + ((rootMenus[i].id==parentId) ? ' selected="selected"' : '') + '>' 
 					+ rootMenus[i].name + '</option>';
 			}
-		}
+		}alert(html);
 		$("#parentId").html(html);
 	}
 	

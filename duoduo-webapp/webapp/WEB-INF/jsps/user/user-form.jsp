@@ -75,25 +75,16 @@
 	
 	function beforeSave() {
 		var data = {
-			moid : $('#moid').val(),
-			serviceDomainMoid : $('#serviceDomainMoid').val(),
-			userDomainMoid : $('#userDomainMoid').val(),
+			moid : $('#id').val(),
 			account : $.trim($('#account').val()),
 			name : $.trim($('#name').val()),
 			password : $('#password').val(),
 			confirmPassword : $('#confirmPassword').val(),
-			mobile : $.trim($('#mobile').val()),
-			officeLocation : $('#officeLocation').val(),
+			phone : $.trim($('#phone').val()),
 			email : $.trim($('#email').val()),
 			roleIds : $('#roleIds').val(),
-			enable : $('input:radio[name=enable]:checked').val()
+			status : $('input:radio[name=status]:checked').val()
 		};
-
-		if (data.serviceDomainMoid == "") {
-			alert('请选择用户所属服务域');
-			$('#serviceDomainMoid').focus();
-			return false;
-		}
 		
 		// 校验用户帐号
 		if (data.account == "") {
@@ -139,13 +130,13 @@
 		}
 
 		// 若手机号码不为空则校验手机号码
-		if(data.mobile == "") {
+		if(data.phone == "") {
 			alert('请输入手机号码');
-			$('#mobile').focus();
+			$('#phone').focus();
 			return false;
 		}
-		if(!Mo.Base.account.checkMobile(data.mobile)) {
-			$('#mobile').focus();
+		if(!Mo.Base.account.checkMobile(data.phone)) {
+			$('#phone').focus();
 			return false;
 		}
 
@@ -182,42 +173,8 @@
     
     <div class= "detail-content">
       <div id="input-all">
-      	<input type="hidden" id='moid' name="moid"  value="${data.moid}" />
+      	<input type="hidden" id='id' name="id"  value="${data.id}" />
         <ul id="editor-ui">
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">所属服务域</td>
-                <td class="input">
-                    <div style="padding-right:10px;position:relative;">
-                      	<input type="hidden" id="serviceDomainMoid" name="serviceDomainMoid" value="${data.serviceDomainMoid}" />
-                      	<input class="e-input" type="text" id="serviceDomainName" name="serviceDomainName" readonly="readonly" value="${data.serviceDomainName}" />
-                    </div>
-                </td>
-                <td class="operate" >
-                	<input type="button" id="btnSelectServiceDomain" name="btnSelectServiceDomain" class="btn btn-x btn-gray btn-x-select" value="选择">
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">所属用户域</td>
-                <td class="input">
-                    <div style="padding-right:10px;position:relative;">
-                      	<input type="hidden" id="userDomainMoid" name="userDomainMoid" value="${data.userDomainMoid}" />
-                      	<input class="e-input" type="text" id="userDomainName" name="userDomainName" readonly="readonly" value="${data.userDomainName}" />
-                    </div>
-                </td>
-                <td class="operate" >
-                	<input type="button" id="btnSelectUserDomain" name="btnSelectUserDomain" class="btn btn-x btn-gray btn-x-select" value="选择">
-                </td>
-              </tr>
-            </table>
-          </li>
           <li class="data-li">
             <table style="table-layout:fixed">
             <tbody>
@@ -285,21 +242,7 @@
                 <td class="title">手机号码</td>
                 <td class="input">
                     <div class="inputDiv">
-                      <input class="e-input"  id="mobile" name="mobile" value="${data.mobile}" />
-                    </div>
-                </td>
-                <td class="operate"></td>
-              </tr>
-            </table>
-          </li>
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">联系地址</td>
-                <td class="input">
-                    <div class="inputDiv">
-                      <input class="e-input" id="officeLocation" name="officeLocation" value="${data.officeLocation}" />
+                      <input class="e-input"  id="phone" name="phone" value="${data.phone}" />
                     </div>
                 </td>
                 <td class="operate"></td>
@@ -344,10 +287,10 @@
                 <td class="title">用户状态</td>
                 <td class="input">
                     <div class="checkDiv">
-                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${data.enable}"> checked</c:if> />
-                      <label for="enableT">启用</label>
-                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${!data.enable}"> checked</c:if> />
-                      <label for="enableF">禁用</label>
+                      <input type="radio" id="statusT" name="status" value="1" <c:if test="${data.status==1}"> checked</c:if> />
+                      <label for="statusT">启用</label>
+                      <input type="radio" id="statusF" name="status" value="0" <c:if test="${data.status!=1}"> checked</c:if> />
+                      <label for="statusF">禁用</label>
                     </div>
                 </td>
                 <td class="operate"></td>

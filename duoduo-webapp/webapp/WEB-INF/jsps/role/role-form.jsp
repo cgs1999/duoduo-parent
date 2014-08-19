@@ -21,7 +21,7 @@
 		$('input[type="radio"]').ezMark();
 		// 选择菜单
 		$("#btnSelectMenu").click(function(){
-			Mo.Dialog.selectMenus("menuIds", "menuNames");
+			Mo.Dialog.selectMenus("resourceIds", "resourceNames");
 		});
 
 		// 保存
@@ -42,14 +42,14 @@
 			$.post(url, data, function(t) {
 				if (t.success) {
 					Mo.SubFrame.controller.hideDetail();
-					alert("保存成功");
+					$.dialog.tips("保存成功");
 					reloadDataGrid();
 				} else {
-					alert("保存失败，原因：" + t.description);
+					$.dialog.tips("保存失败，原因：" + t.description);
 				}
 				Mo.Base.throttle.unLock(url);
 			}, "json").error(function() {
-				alert("保存出现未知错误，请检查网络是否正常！");
+				$.dialog.tips("保存出现未知错误，请检查网络是否正常！");
 				Mo.Base.throttle.unLock(url);
 			});
 		});
@@ -65,7 +65,7 @@
 
 			var id = $('#id').val();
 			if(!id) {
-				alert('记录不存在，删除失败');
+				$.dialog.tips('记录不存在，删除失败');
 				Mo.Base.throttle.unLock(url);
 				return;
 			}
@@ -80,14 +80,14 @@
 			}, function(t) {
 				if (t.success) {
 					Mo.SubFrame.controller.hideDetail();
-					alert("删除成功");
+					$.dialog.tips("删除成功");
 					reloadDataGrid();
 				} else {
-					alert("删除失败，原因：" + t.description);
+					$.dialog.tips("删除失败，原因：" + t.description);
 				}
 				Mo.Base.throttle.unLock(url);
 			}, "json").error(function() {
-				alert("保存出现未知错误，请检查网络是否正常！");
+				$.dialog.tips("保存出现未知错误，请检查网络是否正常！");
 				Mo.Base.throttle.unLock(url);
 			});
 		});
@@ -102,20 +102,15 @@
 		var data = {
 			id : $('#id').val(),
 			name : $('#name').val(),
-			level : $('input:radio[name=level]:checked').val(),
 			type : $('input:radio[name=type]:checked').val(),
-			remark : $('#remark').val(),
-			menuIds : $('#menuIds').val()
+			enable : $('input:radio[name=enable]:checked').val(),
+			memo : $('#memo').val(),
+			resourceIds : $('#resourceIds').val()
 		};
 
 		if (data.name == "") {
-			alert('请输入角色名称');
+			$.dialog.tips('请输入角色名称');
 			$('#name').focus();
-			return false;
-		}
-		if (data.level == "") {
-			alert('请输入角色级别');
-			$('#level').focus();
 			return false;
 		}
 
@@ -154,22 +149,7 @@
               </tr>
             </table>
           </li>
-          <li class="data-li" >
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">角色级别</td>
-                <td class="input">
-                    <div class="checkDiv">
-                      <input type="radio" id="level" name="level" value="1" style="width: 25px" <c:if test="${data.level==1}"> checked</c:if>> 管理员(可编辑)
-                      <input type="radio" id="level" name="level" value="2" style="width: 25px" <c:if test="${data.level!=1}"> checked</c:if>> 操作员(只读)
-                    </div>
-                </td>
-                <td class="operate"></td>
-              </tr>
-            </table>
-          </li>
-          <li class="data-li" style="display: none;">
+          <li class="data-li">
             <table style="table-layout:fixed">
             <tbody>
               <tr>
@@ -188,11 +168,28 @@
             <table style="table-layout:fixed">
             <tbody>
               <tr>
+                <td class="title">启停状态</td>
+                <td class="input">
+                    <div class="checkDiv">
+                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${data.enable}"> checked</c:if> />
+                      <label for="enableT">启用</label>
+                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${!data.enable}"> checked</c:if> />
+                      <label for="enableF">停用</label>
+                    </div>
+                </td>
+                <td class="operate"></td>
+              </tr>
+            </table>
+          </li>
+          <li class="data-li">
+            <table style="table-layout:fixed">
+            <tbody>
+              <tr>
                 <td class="title">角色权限</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
-                      	<input type="hidden" id="menuIds" name="menuIds" value="${data.menuIds}" />
-                      	<textarea rows="3" cols="70" id="menuNames" name="menuNames" readonly="readonly" class="e-textarea">${data.menuNames}</textarea>
+                      	<input type="hidden" id="resourceIds" name="resourceIds" value="${data.resourceIds}" />
+                      	<textarea rows="3" cols="70" id="resourceNames" name="resourceNames" readonly="readonly" class="e-textarea">${data.resourceNames}</textarea>
                     </div>
                 </td>
                 <td class="operate" >
@@ -208,7 +205,7 @@
                 <td class="title">备　　注</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
-                      <textarea rows="3" cols="70" id="remark" name="remark" class="e-textarea">${data.remark}</textarea>
+                      <textarea rows="3" cols="70" id="memo" name="memo" class="e-textarea">${data.memo}</textarea>
                     </div>
                 </td>
                 <td class="operate"></td>

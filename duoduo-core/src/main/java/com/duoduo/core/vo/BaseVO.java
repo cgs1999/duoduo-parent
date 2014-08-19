@@ -2,8 +2,6 @@ package com.duoduo.core.vo;
 
 import net.sf.json.JSONObject;
 
-import com.duoduo.core.model.IdEntity;
-
 /**
  * 基础对象VO
  * @author chengesheng@gmail.com
@@ -63,7 +61,7 @@ public class BaseVO {
 		if (this == obj) return true;
 		if (obj == null || !getClass().getName().equals(obj.getClass().getName())) return false;
 
-		IdEntity entity = (IdEntity) obj;
+		BaseVO entity = (BaseVO) obj;
 		return (hashCode() != 0 && entity.hashCode() != 0) ? hashCode() == entity.hashCode() : false;
 	}
 

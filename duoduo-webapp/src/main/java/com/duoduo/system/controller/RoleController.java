@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.duoduo.core.util.ResponseUtils;
 import com.duoduo.core.vo.Message;
 import com.duoduo.core.vo.Page;
-import com.duoduo.system.Constants;
 import com.duoduo.system.service.ResourceService;
 import com.duoduo.system.service.RoleService;
 import com.duoduo.system.vo.ResourceVO;
@@ -41,7 +40,6 @@ public class RoleController {
 
 	private String listPage = "role/role-list";
 	private String formPage = "role/role-form";
-	private String readPage = "role/role-read";
 	private String selectPage = "role/select-roles";
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -59,30 +57,28 @@ public class RoleController {
 		RoleVO roleVO = roleService.getById(id);
 
 		// 设置资源信息
-		String resourceIds = "";
-		String resourceNames = "";
 		List<ResourceVO> resources = resourceService.listByRoleId("" + roleVO.getId());
-		for (ResourceVO p : resources) {
-			resourceIds += "," + p.getId();
-			resourceNames += "," + p.getName();
-		}
-		// 处理前面多余的","
-		if (!"".equals(resourceIds)) {
-			roleVO.setResourceIds(resourceIds.substring(1));
-			roleVO.setResourceNames(resourceNames.substring(1));
+		if (resources != null && !resources.isEmpty()) {
+			String resourceIds = "";
+			String resourceNames = "";
+			for (ResourceVO p : resources) {
+				resourceIds += "," + p.getId();
+				resourceNames += "," + p.getName();
+			}
+			// 处理前面多余的","
+			if (!"".equals(resourceIds)) {
+				roleVO.setResourceIds(resourceIds.substring(1));
+				roleVO.setResourceNames(resourceNames.substring(1));
+			}
 		}
 
 		model.addAttribute("data", roleVO);
 
-		if (Constants.SYSTEM_ROLE.equals(roleVO.getType())) {
-			return readPage;
-		} else {
-			return formPage;
-		}
+		return formPage;
 	}
 
 	@RequestMapping(value = "/selectRoles", method = RequestMethod.GET)
-	public String selectFromAllRole(ModelMap model) {
+	public String selectRoles(ModelMap model) {
 		return selectPage;
 	}
 
@@ -124,10 +120,11 @@ public class RoleController {
 				}
 
 				if (roleVO.getId() == null) {
-					roleService.create(roleVO);
+					roleVO = roleService.create(roleVO);
 				} else {
 					roleService.update(roleVO);
 				}
+				nResult = roleVO.getId().intValue();
 			}
 
 			if (nResult < 0) {

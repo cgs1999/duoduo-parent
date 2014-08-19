@@ -4,8 +4,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a,
     padding: 0;
 }
 body,button, input, select, textarea /* for ie */ {
-    font: 12px/1.5 \5FAE\8F6F\96C5\9ED1,\5B8B\4F53,"Microsoft Yahei",tahoma, arial,sans-serif;
+    font: 12px/1.5 arial,"\5FAE\8F6F\96C5\9ED1","\5B8B\4F53","Microsoft Yahei",tahoma, arial,sans-serif;
 }
+
 h1, h2, h3, h4, h5, h6 { font-size: 100%; }
 address, cite, dfn, em, var { font-style: normal; } 
 code, kbd, pre, samp { font-family: courier new, courier, monospace; } 
@@ -25,7 +26,6 @@ button, input, select, textarea { font-size: 100%; }
 table { border-collapse: collapse; border-spacing: 0; }
 .clearfix:after { content: '\20'; display: block; height: 0; clear: both; }
 .clearfix{ *zoom: 1; }
-
 .hidden {
 	display:none;
 }
@@ -33,6 +33,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 [hidefocus] {
     outline: medium none;
 }
+
+
 .W_close {
     background: url("../images/layer-close.png?t=5.0.3890385384") no-repeat scroll 0 transparent;
     display: inline-block;
@@ -69,27 +71,22 @@ table { border-collapse: collapse; border-spacing: 0; }
     text-align: center;
     border: 1px solid #DCDFE1;
 }
-.btn-x-select{
-    padding:0 10px;
-}
 
 .btn-gray {
     background-color: #EFF2F4;
     color: #5F5F5F;
 }
 
-
-
 .btn-gray:hover,.btn-gray.hover{
-    background: #ffffff;
-    border-color: #2E8CC1;
-    color:#2E8CC1;
+    background: url("../images/btn-bg-normal.png?t=5.0.2613065861") repeat-y 0 0 #53AFE4;
+    border-color: transparent;
+    color:#fff;
 }
 
-.btn-gray:active,.btn-gray.active{
-    background: url("../images/btn-bg-normal.png?t=5.0.2613065861") repeat-y 0 0 #53AFE4;
-    border-color: #2E8CC1;
-    color:#fff;
+.btn-gray:active,.btn-gray.active {
+    background: #ffffff;
+    border-color: #007ac0;
+    color:#2E8CC1;
 }
 
 .btn-gray:disabled,.btn-gray.disabled{
@@ -99,9 +96,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 }
 
 
-
 .btn-x-left{
     margin-right: 6px;
+}
+
+.btn-x-select{
+    padding:0 10px;
 }
 
 .required{
@@ -109,102 +109,3 @@ table { border-collapse: collapse; border-spacing: 0; }
     width:20px;
     height:9px;  
 }
-
-
-/*对话框通用*/
-.mo-dialog-content{
-    margin:0 auto;
-    padding: 10px 32px;
-    position: relative;
-}
-
-.mo-dialog-content .separater {
-    border-top: 2px solid #555555;
-    padding:0;
-    margin:0;
-}
-.mo-dialog-content .title {
-    margin: 10px 0;
-    position: relative;
-}
-
-.mo-dialog-content .W_close{
-    top:5px;
-    right: 0px;
-}
-
-.mo-dialog-content .title span {
-  font-size: 14px;
-  color:#5a5f6a;
-}
-
-.mo-dialog-content .info {
-  color:#616060;
-  margin:46px auto 0 auto;
-  width: 80%
-
-}
-.mo-dialog-content  .setting-item{
-  margin-top:20px;
-  *zoom: 1; 
-}
-.mo-dialog-content  .setting-item:after{
-  content: '\20'; display: block; height: 0; clear: both; 
-}
-
-
-.mo-dialog-content  .setting-item label{
-    display: block;
-    float: left;
-    font-size: 12px;
-    color:#616060;
-    text-align: left;
-    width: 80px;
-    height: 24px;
-    padding: 2px;
-    line-height: 24px;
-}
-
-.mo-dialog-content .setting-item-main {
-    background: none repeat scroll 0 0 #FFFFFF;
-    margin-left: 100px;
-    position: relative;
-    width:210px;
-    *margin-left: 0px;
-
-}
-
-.mo-dialog-content .info .input-text{
-    border:0px;
-    border-bottom: 1px solid #949799;
-    color:#616060;
-    font-size: 12px;
-    width:100%;
-    height: 24px;
-}
-
-.mo-dialog-content .item-msg{
-    margin-top:7px;
-    margin-left:100px;
-    *margin-left: 85px;
-    background: #949494;
-    color:#fff;
-    width: 190px;
-    padding:0 10px;
-}
-
-.mo-dialog-content .item-msg .msg{
-    background: url("../images/item-msg-error.png?t=5.0.3416513767") no-repeat scroll 0 4px;
-    padding-left: 16px;
-}
-
-.mo-dialog-content .btn-wrapper {
-  position: relative;
-  margin:50px 0 46px 0;
-  height:24px;
-  padding-top:0px;
-}
-.mo-dialog-content .text-tips{
-    margin-top: 2px;
-}
-

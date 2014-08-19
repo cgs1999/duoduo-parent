@@ -155,8 +155,6 @@ Mo.gridDetail = {
 					rownumbers : true,
 					striped : false,
 					singleSelect : true,
-					checkOnSelect : false,
-					selectOnCheck : false,
 					border : false,
 					fit : true,
 					fitColumns : true,
@@ -170,21 +168,10 @@ Mo.gridDetail = {
 						params.start = (params.page - 1) * params.rows;
 						params.limit = params.rows;
 					},
-					
-					onSelect:function(rowIndex, rowData){
-						$(Mo.gridDetail.datagridId).datagrid("clearSelections");
-						var arr = $(Mo.gridDetail.datagridId).datagrid("getChecked");
-						if(arr.indexOf(rowData)==-1){
-							$(Mo.gridDetail.datagridId).datagrid("clearChecked");
-							$(Mo.gridDetail.datagridId).datagrid("checkRow",rowIndex);
-						}else{
-							if(arr.length==1){
-								$(Mo.gridDetail.datagridId).datagrid("uncheckRow",rowIndex);
-							}else{
-								$(Mo.gridDetail.datagridId).datagrid("clearChecked");
-								$(Mo.gridDetail.datagridId).datagrid("checkRow",rowIndex);
-							}
-						}
+
+					onClickRow : function(index, row) {
+						var idField = $(this).datagrid("options").idField;
+						Mo.gridDetail.doOpen(row[idField]);
 					}
 				}
 			};
@@ -207,27 +194,11 @@ Mo.gridDetail = {
 					fitColumns : true,
 					showHeader : true,
 					loadMsg : "正在加载，请稍候...",
-					
-					onSelect:function(rowIndex, rowData){
-						$(Mo.gridDetail.treegridId).datagrid("clearSelections");
-						var arr = $(Mo.gridDetail.treegridId).datagrid("getChecked");
-						if(arr.indexOf(rowData)==-1){
-							$(Mo.gridDetail.treegridId).datagrid("clearChecked");
-							$(Mo.gridDetail.treegridId).datagrid("checkRow",rowIndex);
-						}else{
-							if(arr.length==1){
-								$(Mo.gridDetail.treegridId).datagrid("uncheckRow",rowIndex);
-							}else{
-								$(Mo.gridDetail.treegridId).datagrid("clearChecked");
-								$(Mo.gridDetail.treegridId).datagrid("checkRow",rowIndex);
-							}
-						}
-					}/*,
 
 					onClickRow : function(row) {
 						var idField = $(this).treegrid("options").idField;
 						Mo.gridDetail.doOpen(row[idField]);
-					}*/
+					}
 				}
 			};
 			
@@ -269,7 +240,6 @@ Mo.gridDetail = {
 			$(this.datagridId).datagrid(this.datagridOptions);
 			if(this.datagridOptions.pagination) {
 				this.initPagination($(this.datagridId).datagrid("getPager"));
-				this.initScrollbar();
 			}
 		}
 	},
@@ -279,7 +249,6 @@ Mo.gridDetail = {
 			$(this.treegridId).treegrid(this.treegridOptions);
 			if(this.treegridOptions.pagination) {
 				this.initPagination($(this.treegridId).treegrid("getPager"));
-				this.initScrollbar();
 			}
 		}
 	},
@@ -287,25 +256,10 @@ Mo.gridDetail = {
 	initPagination:function(pager){
 		pager.pagination({
 			layout: ["manual","prev", "next"],
-			displayMsg:"当前共有 {total} 条记录　　",
+			displayMsg:"当前共有 {total} 条记录",
 			beforePageText:"",
 			afterPageText:"/ {pages}"
 		});
-	},
-	
-	initScrollbar : function() {
-/*		$(".datagrid-body").mCustomScrollbar({
-			axis:"yx",
-			callbacks:{
-				whileScrolling:function(){
-					$(".datagrid-htable").css("position","relative");
-					$(".datagrid-htable").css("left",$(".datagrid-body").mcs.left);
-				}
-			}
-		});
-
-		$(".mCSB_container").width($(".datagrid-btable").width());
-		$(".mCSB_container").height($(".datagrid-btable").height());*/
 	},
 
 	initHint : function(selector) {
@@ -362,7 +316,7 @@ Mo.gridDetail = {
 		}
 	},
 	doOpen: function(id) {
-		Mo.SubFrame.controller.setDetailFrame(this.getUrl("/" + id));
+		Mo.SubFrame.controller.setDetailFrame(this.getUrl("/read/" + id));
 	},
 	reinit: function(options) {
 		this.datagridOptions = null;

@@ -365,213 +365,18 @@
 
 
 
-/** 修改密码start **/
-#modifyPasswordWrapper {
-	display: none;
-	min-height: 100%;
-    position: relative;
-}
-
-#modifyPasswordWrapper .mofidyPassword-content {
-	height: 350px;
-	margin: 0 auto;
-	overflow:hidden;
-	padding: 0 0 40px;
-	position: relative;
-	width: 600px;
-}
-
-.mofidyPassword-content .title {
-	margin: 10px 0;
-	padding: 0 20px;
-}
-
-.mofidyPassword-content .title span {
-	font-size: 16px;
-}
-
-.mofidyPassword-content .info {
-	height: 300px;
-	margin: 30px auto;
-    position: relative;
-}
-
-.mofidyPassword-content .password-message {
-	color: #222222;
-	padding: 3px 90px 3px 150px;
-}
-
-.mofidyPassword-content .setting-item {
-    clear: both;
-}
-
-.mofidyPassword-content .setting-item label {
-    color: #4F545A;
-    display: block;
-    float: left;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 15px;
-    padding: 17px 10px;
-    text-align: right;
-    width: 120px;
-}
-
-.mofidyPassword-content .setting-item-main {
-    background: none repeat scroll 0 0 #FFFFFF;
-    margin-left: 150px;
-    position: relative;
-}
-
-.mofidyPassword-content .info .input-text {
-	border: 1px solid #AEBACD;
-    font-size: 16px;
-    height: 26px;
-    line-height: 26px;
-    margin: 7px 0;
-    padding: 4px 0;
-}
-
-.mofidyPassword-content .item-old-password, .mofidyPassword-content .item-new-password, .mofidyPassword-content .item-confirm-password {
-    width: 350px;
-}
-
-.mofidyPassword-content .item-msg {
-	display:none;
-	background: none repeat scroll 0 0 #222222;
-    margin: 10px 0 10px 150px;
-    width: 350px;
-}
-
-.mofidyPassword-content .item-msg .msg {
-    color: #FFFFFF;
-    font-weight: bold;
-    height: 32px;
-    line-height: 32px;
-    margin: 0 20px;
-}
-
 /** 修改密码end **/
 
 /** 修改个人资料start **/
-
-#modifyUserWrapper {
-	display: none;
-    position: relative;
+#modifyUserWrapper .modifyUser-content {
 }
 
-#modifyUserWrapper .mofiyUser-content {
-	height: 370px;
-	margin: 0 auto;
-	overflow:hidden;
-	padding: 0 0 40px;
-	position: relative;
-	width: 600px;
-}
-
-.mofiyUser-content .title {
-	margin: 10px 0;
-	padding: 0 20px;
-}
-
-.mofiyUser-content .title span {
-	font-size: 16px;
-}
-
-.mofiyUser-content .info {
-	height: 320px;
-	margin: 30px auto;
-    position: relative;
-}
-
-.mofiyUser-content .modify-message {
-	color: #222222;
-	padding: 0 0 0 150px;
-}
-
-.mofiyUser-content .password-message {
-	color: #222222;
-	padding: 3px 0 3px 155px;
-}
-
-.mofiyUser-content .modify-message .message-info {
-	padding: 0 0 0 20px;
-}
-
-.mofiyUser-content .setting-item {
-    clear: both;
-}
-
-.mofiyUser-content .setting-item label {
-    color: #4F545A;
-    display: block;
-    float: left;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 15px;
-    padding: 17px 10px;
-    text-align: right;
-    width: 120px;
-}
-
-.mofiyUser-content .setting-item-main {
-    background: none repeat scroll 0 0 #FFFFFF;
-    margin-left: 150px;
-    position: relative;
-}
-
-.mofiyUser-content .info .input-text {
-	border: 1px solid #AEBACD;
-    font-size: 14px;
-    height: 26px;
-    line-height: 26px;
-    margin: 7px 0;
-    padding: 4px 0;
-    width: 350px;
-}
-
-.mofiyUser-content .item-msg {
-	background: none repeat scroll 0 0 #222222;
-	display: none;
-    margin: 10px 0 10px 150px;
-    width: 350px;
-}
-
-.mofiyUser-content .item-msg .msg {
-    color: #FFFFFF;
-    font-weight: bold;
-    height: 32px;
-    line-height: 32px;
-    margin: 0 20px;
-}
-
-/** 修改个人资料end **/
 
 /** 关于begin **/
-#aboutWrapper {
-	display: none;
+#aboutWrapper .about-content {
 }
-.about-content {
-	margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    width: 400px;
-}
-
-.about-content .title {
-	margin: 10px 0;
-	padding: 0 20px;
-}
-
-.about-content .title span {
-	font-size: 16px;
-}
-
 .about-content .info {
-	margin: 30px auto;
-    position: relative;
-    text-align: center;
-    width: 300px;
+  text-align: center;
 }
 
 .about-content .info .company {
@@ -592,37 +397,12 @@
  /** 关于end **/
  
  /** 退出start **/
-#logoutWrapper {
-	display: none;
-}
-.logout-content {
-	height: 200px;
-	margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    width: 400px;
-}
-
-.logout-content .title {
-	margin: 10px 0;
-	padding: 0 20px;
-}
-
-.logout-content .title span {
-	font-size: 16px;
-}
-
-.logout-content .info {
-	height: 50%;
-    margin: 0 auto;
-    padding: 20px 0;
-    position: relative;
-    width: 100%;
+#logoutWrapper .logout-content {
 }
 
 .logout-content .info .msg {
 	text-align: center;
+  font-size: 16px;
 }
 
  /** 退出end **/
-

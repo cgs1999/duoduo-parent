@@ -1,71 +1,65 @@
 $.namespace("Mo.Frame");
 Mo.Frame = {
-	main_min_width : 1024,
-	bottom_fix_height : 0,
-	default_detail_paddingTop : 36, // 默认详细表单顶部偏移量
-	default_detail_paddingLeft : 203, // 默认详细表单左边偏移量, 1024-221-600
-	detail_paddingTop : this.default_detail_paddingTop,
-	detail_paddingLeft : this.default_detail_paddingLeft,
+	default_detail_paddingTop : 56, // 默认详细表单顶部偏移量
+	default_detail_paddingLeft : 244, // 默认详细表单左边偏移量
+    detail_paddingTop: this.default_detail_paddingTop,
+    detail_paddingLeft: this.default_detail_paddingLeft,
+    main_min_width:1280,
+    main_padding_left:128,
+    main_min_height:642,
+    main_padding_bottom:68,
+    main_top_height:98,
 
-	init : function() {
-		this.setSize();
-		this.initEvent();
-	},
+    fixLineHeight:2,
 
-	initEvent : function() {
-		var that = this;
-		$(window).resize(function() {
-			that.setSize();
-		});
-	},
+    init:function(){
+        this.setSize();
+        this.initEvent();
+    },
 
-	setSize : function() {
-		var win = this.getWindowSize();
-		$("#wrap-all").width(win.w);
-		$("#wrap-all").height(win.h);
+    initEvent:function(){
+        var that = this;
+        $(window).resize(function(){
+            that.setSize();
+        })
+    },
 
-		if (win.w < this.main_min_width) {
-			win.w = this.main_min_width;
-		}
+    setSize:function(){
+       var win = this.getWindowSize();
+       if(win.w<this.main_min_width){
+          win.w = this.main_min_width;
+       }
 
-		$header = $("#header");
-		$("#header").width(
-				win.w - parseFloat($header.css('padding-right'))
-						- parseFloat($header.css('padding-left')));
+      if(win.h<this.main_min_height){
+          win.h = this.main_min_height;
+       }
 
-		var viewHeight = win.h - this.getHeaderH() - this.bottom_fix_height;
-		$("#inner-main").width(win.w);
-		$("#inner-main").height(viewHeight);
+       var wrapW = win.w-(this.main_padding_left*2);
+       var wrapH = win.h;
+       $(".wrap-all").width(wrapW);
+       $(".wrap-all").height(win.h);
+       var innerHeight = win.h-this.main_top_height-this.main_padding_bottom;
+       $("#inner-main").height(innerHeight);
+       var viewHeight = innerHeight-(this.fixLineHeight*2);
 
-		var viewDetailWidth = win.w - this.getSideW() - this.detail_paddingLeft;
-		this.viewDetailWidth = viewDetailWidth;
+	   $("#main-content").height(viewHeight);
+       $("#detail-content").css("top",this.detail_paddingTop+this.fixLineHeight);
+       $("#detail-content").height(viewHeight-this.detail_paddingTop);
+       var viewDetailWidth =  $("#main-content").width()-this.detail_paddingLeft;
 
-		var navH = $("#main-nav").outerHeight();
+       $("#detail-content").width(viewDetailWidth);
+    },
 
-		$("#main-content").height(viewHeight - navH);
-		$("#detail-content").css("top", this.detail_paddingTop + navH);
-		$("#detail-content").height(viewHeight - navH - this.detail_paddingTop);
-		$("#detail-content").width(viewDetailWidth);
+    getWindowSize:function(){
+        var w = ($(window).width());
+        var h = ($(window).height());
+        return {w:w,h:h};
+    },
 
-	},
-
-	getWindowSize : function() {
-		var w = ($(window).width());
-		var h = ($(window).height());
-		return {
-			w : w,
-			h : h
-		};
-	},
-
-	getHeaderH : function() {
-		return ($("#header").outerHeight());
-	},
-
-	getSideW : function() {
-		return ($("#aside").outerWidth());
-	}
-};
+    getSideW:function(){
+      return ($("#aside").outerWidth());
+    }
+}
 
 Mo.Frame.controller = {
 	mainFrameTag : "main-frame",
@@ -155,8 +149,8 @@ Mo.Frame.controller = {
 
 	showDetail : function(paddingTop, paddingLeft) {
 
-		paddingTop = paddingTop || Mo.Frame.default_detail_paddingTop;
-		paddingLeft = paddingLeft || Mo.Frame.default_detail_paddingLeft;
+		paddingTop = paddingTop || Mo.Frame.detail_paddingTop;
+		paddingLeft = paddingLeft || Mo.Frame.detail_paddingLeft;
 		if (Mo.Frame.detail_paddingTop != paddingTop || Mo.Frame.detail_paddingLeft != paddingLeft) {
 			this.setDetailSize(paddingTop, paddingLeft);
 		}
@@ -186,6 +180,7 @@ Mo.Frame.controller = {
 			left : $("#inner-main").width()
 		}, this.showHideTime, function() {
 			$(this).hide();
+			$("#detail-frame")[0].src = "about:blank";
 		});
 	}
 };
@@ -270,7 +265,7 @@ Mo.Home.asideMenu={
 		this.initEvent();
 	},
 	initMenu: function() {
-		var data = Mo.Config.allMenus;
+		var data = Mo.Menu.allMenus;
 
 		var html = "";
 		var rootMenus = this.getRootMenus(data);
@@ -297,7 +292,7 @@ Mo.Home.asideMenu={
 		
 	},
 	getRootMenus: function(data) {
-		return this.getSubMenus(data, Mo.Config.rootMenuId);
+		return this.getSubMenus(data, Mo.Menu.rootMenuId);
 	},
 	getSubMenus: function(data, parentId) {
 		var menus = [];
