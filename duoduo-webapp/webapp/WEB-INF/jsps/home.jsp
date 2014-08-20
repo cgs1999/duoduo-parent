@@ -49,7 +49,7 @@ $(function(){
 				</div>
 			</div><a class="info-i logout logout-info icon">退出</a>
     </div>
-    <div class="navs">
+    <div class="navs hidden">
        <a class="navs-i">首页</a>
        <a class="navs-i">业务控制管理中心<b></b></a>
     </div>

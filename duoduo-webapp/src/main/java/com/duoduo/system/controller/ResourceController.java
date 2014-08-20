@@ -167,13 +167,14 @@ public class ResourceController {
 				} else {
 					resourceService.update(resourceVO);
 				}
+				nResult = resourceVO.getId().intValue();
 			}
 
 			if (nResult < 0) {
 				message.setSuccess(false);
 				message.setDescription("保存失败，请联系管理员!");
 			} else {
-				message.setData(Integer.toString(nResult));
+				message.setData("" + nResult);
 			}
 		} catch (RuntimeException re) {
 			message.setSuccess(false);

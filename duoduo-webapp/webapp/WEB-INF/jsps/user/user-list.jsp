@@ -26,6 +26,10 @@
 					field : 'id',
 					hidden : true
 				}, {
+					field : 'account',
+					title : '帐号',
+					width : 100
+				}, {
 					field : 'name',
 					title : '姓名',
 					width : 100,
@@ -33,23 +37,19 @@
 						return value ? value : row.account;
 					}
 				}, {
-					field : 'email',
-					title : '邮箱',
-					width : 150
-				}, {
-					field : 'mobile',
+					field : 'phone',
 					title : '手机',
 					width : 100
 				}, {
-					field : 'officeLocation',
-					title : '联系地址',
-					width : 150
+					field : 'email',
+					title : '邮箱',
+					width : 200
 				}, {
-					field : 'enable',
+					field : 'status',
 					title : '账号状态',
 					width : 70,
 					formatter : function(value,row,index){
-						return value==1 ? "启用" : "禁用";
+						return value=="1" ? "启用" : "禁用";
 					}
 				} ] ],
 

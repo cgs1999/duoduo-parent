@@ -94,7 +94,7 @@
 
 	<div id="tb" class="inline">
 		<div class="search-bar">
-			<input type="text" id="name" name="name" class="input-text" mo-hint="请输入菜单名称" maxlength="20">
+			<input type="text" id="name" name="name" class="input-text" mo-hint="请输入资源名称" maxlength="20">
 			<a href="javascript: doSearch()" class="easyui-linkbutton sep" iconCls="icon-search" plain="true"></a>
 		</div>
 		<div class="operate-bar"> 	

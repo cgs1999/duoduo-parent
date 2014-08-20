@@ -75,7 +75,7 @@
 	
 	function beforeSave() {
 		var data = {
-			moid : $('#id').val(),
+			id : $('#id').val(),
 			account : $.trim($('#account').val()),
 			name : $.trim($('#name').val()),
 			password : $('#password').val(),

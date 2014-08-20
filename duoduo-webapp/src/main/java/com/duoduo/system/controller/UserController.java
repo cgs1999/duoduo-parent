@@ -98,10 +98,10 @@ public class UserController {
 		int nResult = -1;
 		if (userVO != null) {
 			if (userVO.getId() != null && userVO.getId().longValue() != 0) {
-				userVO = userService.create(userVO);
+				userService.update(userVO);
 				nResult = 1;
 			} else {
-				userService.update(userVO);
+				userVO = userService.create(userVO);
 				nResult = 2;
 			}
 		}

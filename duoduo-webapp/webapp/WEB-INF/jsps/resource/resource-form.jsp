@@ -106,7 +106,7 @@
 			id : $('#id').val(),
 			parentId : $('#parentId').val(),
 			name : $.trim($('#name').val()),
-			type : $('input:radio[name=type]:checked').val()
+			type : $('input:radio[name=type]:checked').val(),
 			url : $.trim($('#url').val()),
 			orderIndex : $.trim($('#orderIndex').val()),
 			enable : $('input:radio[name=enable]:checked').val()
@@ -128,7 +128,7 @@
 	}
 	
 	function initRootMenus() {
-		var html = '<option value="-1">无</option>';
+		var html = '<option value="0">无</option>';
 		var len = rootMenus.length;
 		if(len>0) {
 			for(var i=0; i<len; i++) {
@@ -141,7 +141,7 @@
 				html += '<option value="' + rootMenus[i].id + '"' + ((rootMenus[i].id==parentId) ? ' selected="selected"' : '') + '>' 
 					+ rootMenus[i].name + '</option>';
 			}
-		}alert(html);
+		}
 		$("#parentId").html(html);
 	}
 	
@@ -201,9 +201,9 @@
                 <td class="title">资源类型</td>
                 <td class="input">
                     <div class="checkDiv">
-                      <input type="radio" id="typeT" name="type" value="1" <c:if test="${data.type}"> checked</c:if> />
+                      <input type="radio" id="typeT" name="type" value="1" <c:if test="${data.type==1}"> checked</c:if> />
                       <label for="typeT">菜单</label>
-                      <input type="radio" id="typeF" name="type" value="2" <c:if test="${!data.type}"> checked</c:if> />
+                      <input type="radio" id="typeF" name="type" value="2" <c:if test="${data.type!=1}"> checked</c:if> />
                       <label for="typeF">URL</label>
                     </div>
                 </td>
