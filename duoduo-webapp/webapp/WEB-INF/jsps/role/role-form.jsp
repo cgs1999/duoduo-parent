@@ -19,9 +19,9 @@
 	$(function() {
 		Mo.SubFrame.init();
 		$('input[type="radio"]').ezMark();
-		// 选择菜单
-		$("#btnSelectMenu").click(function(){
-			Mo.Dialog.selectMenus("resourceIds", "resourceNames");
+		// 选择资源
+		$("#btnSelectResource").click(function(){
+			Mo.Dialog.selectResources("resourceIds", "resourceNames");
 		});
 
 		// 保存
@@ -193,7 +193,7 @@
                     </div>
                 </td>
                 <td class="operate" >
-                	<input type="button" id="btnSelectMenu" name="btnSelectMenu" class="btn btn-x btn-gray btn-x-select" value="选择">
+                	<input type="button" id="btnSelectResource" name="btnSelectResource" class="btn btn-x btn-gray btn-x-select" value="选择">
                 </td>
               </tr>
             </table>

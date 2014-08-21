@@ -67,6 +67,40 @@ Mo.Dialog = {
 			drag: false // 不允许拖拽
 		}, false);
 	},
+
+	// 选择资源对话框，返回多个值，以半角逗号分隔
+	selectResources : function(resourceIdsId, resourceNamesId) {
+		var objectIds = $('#' + resourceIdsId);
+		if(!objectIds) {
+			alert("资源id接收对象" + resourceIdsId + "不存在！");
+			return;
+		}
+		var objectNames = $('#' + resourceNamesId);
+		if(!objectNames) {
+			alert("资源名称接收对象" + resourceNamesId + "不存在！");
+			return;
+		}
+		
+		$.dialog.data('resourceIds', objectIds.val());
+		$.dialog.open(Mo.Config.appUrl + "/system/resource/selectResources", {
+			id: "selectResourceDialog",
+			lock: true,
+			opacity: 0.50,	// 透明度
+			title: "选择资源",
+			padding: 0,
+			width: 360,
+			height: 440,
+			close: function () {
+				var resourceIds = $.dialog.data('resourceIds');
+				if(resourceIds!=objectIds.val()) {
+					objectIds.val(resourceIds);
+					objectNames.val($.dialog.data('resourceNames'));
+				}
+			},
+			cancel:false, // 隐藏关闭按钮
+			drag: false // 不允许拖拽
+		}, false);
+	},
 	
 	// 选择服务域对话框，返回一个服务域的moid
 	selectServiceDomain : function(serviceDomainMoidId, serviceDomainNameId, callback) {

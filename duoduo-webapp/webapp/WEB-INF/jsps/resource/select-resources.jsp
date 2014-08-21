@@ -75,7 +75,7 @@
 				animate: true,
 				checkbox: true,
 				cascadeCheck: false,
-				url : baseUrl + "/listAllMenuSimple",
+				url : baseUrl + "/listAllSimple",
 				onLoadSuccess: function(node, data) {
 					// 初始化选中数据
 					initCheckData(data);
@@ -92,17 +92,17 @@
 		
 		// 确定
 		$("#detail-btn-ok").click(function(){
-			var menuIds = "";
-			var menuNames = "";
+			var resourceIds = "";
+			var resourceNames = "";
 			var rows = $("#tree").tree("getChecked");
 			for(var i=0, len=rows.length; i<len; i++) {
-				menuIds += "," + rows[i].id;
-				menuNames += "," + rows[i].text;
+				resourceIds += "," + rows[i].id;
+				resourceNames += "," + rows[i].text;
 			}
 			
 			// 设置返回值并关闭对话框
-			$.dialog.data("menuIds", menuIds.substr(1));
-			$.dialog.data("menuNames", menuNames.substr(1));
+			$.dialog.data("resourceIds", resourceIds.substr(1));
+			$.dialog.data("resourceNames", resourceNames.substr(1));
 			$.dialog.close();
 		});
 		
@@ -119,9 +119,9 @@
 	
 	// 初始化选中数据
 	function initCheckData(data) {
-        var menuIds = $.dialog.data("menuIds");
-        if(menuIds!=null && menuIds!="") {
-        	var ids = menuIds.split(",");
+        var resourceIds = $.dialog.data("resourceIds");
+        if(resourceIds!=null && resourceIds!="") {
+        	var ids = resourceIds.split(",");
         	for(var i=0, len=ids.length; i<len; i++) {
         		var node = $("#tree").tree("find", parseInt(ids[i]));
         		if(node!=null) {
@@ -136,7 +136,7 @@
 	<div id="pageWrapper">
 		<div class="page-content">
 			<div class="title">
-				<span>选择菜单</span>
+				<span>选择资源</span>
 				<a href="javascript:void(0);" class="W_close" hidefocus="true"></a>
 			</div>
 			<div class="separater"></div>
