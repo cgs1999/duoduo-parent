@@ -76,17 +76,19 @@ public class UserController {
 		UserVO userVO = userService.getById(id);
 
 		// 设置角色信息
-		String roleIds = "";
-		String roleNames = "";
 		List<RoleVO> roles = roleService.listByUserId(id);
-		for (RoleVO role : roles) {
-			roleIds += "," + role.getId();
-			roleNames += "," + role.getName();
-		}
-		// 处理前面多余的","
-		if (!"".equals(roleIds)) {
-			userVO.setRoleIds(roleIds.substring(1));
-			userVO.setRoleNames(roleNames.substring(1));
+		if (roles != null && !roles.isEmpty()) {
+			String roleIds = "";
+			String roleNames = "";
+			for (RoleVO role : roles) {
+				roleIds += "," + role.getId();
+				roleNames += "," + role.getName();
+			}
+			// 处理前面多余的","
+			if (!"".equals(roleIds)) {
+				userVO.setRoleIds(roleIds.substring(1));
+				userVO.setRoleNames(roleNames.substring(1));
+			}
 		}
 
 		model.addAttribute("data", userVO);

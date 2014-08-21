@@ -2,6 +2,7 @@ package com.duoduo.system.manager;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.duoduo.core.vo.Page;
@@ -34,11 +35,19 @@ public class UserManagerImpl implements UserManager {
 
 	@Override
 	public User create(User user) {
+		// MD5加密密码
+		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+		user.setPassword(md5.encodePassword(user.getPassword(), null));
+
 		return userDao.create(user);
 	}
 
 	@Override
 	public void update(User user) {
+		// MD5加密密码
+		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+		user.setPassword(md5.encodePassword(user.getPassword(), null));
+
 		userDao.update(user);
 	}
 
