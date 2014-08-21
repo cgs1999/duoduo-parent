@@ -68,6 +68,12 @@ public interface ResourceService {
 	public List<ResourceVO> listByRoleId(String roleId);
 
 	/**
+	 * 获取所有资源
+	 * @return
+	 */
+	public List<ResourceVO> listAllSimple();
+
+	/**
 	 * 根据父资源编号获取所属子资源
 	 * @param parentId
 	 * @return

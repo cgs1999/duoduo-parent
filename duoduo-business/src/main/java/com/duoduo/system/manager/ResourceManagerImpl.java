@@ -72,6 +72,11 @@ public class ResourceManagerImpl implements ResourceManager {
 	}
 
 	@Override
+	public List<Resource> listAll() {
+		return resourceDao.listAll();
+	}
+
+	@Override
 	public List<Resource> listSubResource(String parentId) {
 		return resourceDao.listSubResource(parentId);
 	}

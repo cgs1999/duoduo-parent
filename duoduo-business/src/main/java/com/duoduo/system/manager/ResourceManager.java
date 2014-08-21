@@ -68,6 +68,12 @@ public interface ResourceManager {
 	public List<Resource> listByRoleId(String roleId);
 
 	/**
+	 * 获取所属资源
+	 * @return
+	 */
+	public List<Resource> listAll();
+
+	/**
 	 * 根据父资源编号获取所属子资源
 	 * @param parentId
 	 * @return

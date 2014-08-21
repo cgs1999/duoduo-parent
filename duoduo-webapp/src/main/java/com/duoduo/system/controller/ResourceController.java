@@ -88,7 +88,7 @@ public class ResourceController {
 	}
 
 	@RequestMapping(value = "/listAllMenuSimple", method = RequestMethod.POST)
-	public void listAllSimple(HttpServletResponse response) {
+	public void listAllMenuSimple(HttpServletResponse response) {
 		List<EasyUiTreeNode> treeNodes = new ArrayList<EasyUiTreeNode>(0);
 		List<ResourceVO> menus = resourceService.listAllMenuSimple();
 		for (ResourceVO menu : menus) {
@@ -97,6 +97,24 @@ public class ResourceController {
 				treeNode.setId(menu.getId());
 				treeNode.setText(menu.getName());
 				treeNode.setChildren(listChildren(menus, menu.getId()));
+
+				treeNodes.add(treeNode);
+			}
+		}
+
+		ResponseUtils.renderJson(response, treeNodes);
+	}
+
+	@RequestMapping(value = "/listAllSimple", method = RequestMethod.POST)
+	public void listAllSimple(HttpServletResponse response) {
+		List<EasyUiTreeNode> treeNodes = new ArrayList<EasyUiTreeNode>(0);
+		List<ResourceVO> resources = resourceService.listAllSimple();
+		for (ResourceVO resource : resources) {
+			if (Constants.ROOT_MENU_ID == resource.getParentId()) {
+				EasyUiTreeNode treeNode = new EasyUiTreeNode();
+				treeNode.setId(resource.getId());
+				treeNode.setText(resource.getName());
+				treeNode.setChildren(listChildren(resources, resource.getId()));
 
 				treeNodes.add(treeNode);
 			}

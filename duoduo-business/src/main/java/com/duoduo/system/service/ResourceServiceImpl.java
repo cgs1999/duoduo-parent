@@ -79,6 +79,11 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	public List<ResourceVO> listAllSimple() {
+		return toSimpleList(resourceManager.listAll());
+	}
+
+	@Override
 	public List<ResourceVO> listSubResource(String parentId) {
 		return fromEntityList(resourceManager.listSubResource(parentId));
 	}

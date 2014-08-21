@@ -197,6 +197,20 @@ public class ResourceDao extends BaseDao {
 		return null;
 	}
 
+	private static final String listAllSql = "select * from sys_resource" + " order by order_index";
+
+	/**
+	 * 获取所有资源
+	 */
+	public List<Resource> listAll() {
+		try {
+			List<Resource> resources = super.getJdbcTemplate().query(listAllSql, entityRowMapper);
+			return resources;
+		} catch (DataAccessException e) {
+		}
+		return null;
+	}
+
 	private static final String listByTypeSql = "select * from sys_resource where type=?" + " order by order_index";
 
 	/**
