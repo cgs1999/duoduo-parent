@@ -93,6 +93,7 @@ table { border-collapse: collapse; border-spacing: 0; }
     background: #E5E5E5;
     border-color: #E5E5E5;
     color:#fff;
+    cursor: default;
 }
 
 
@@ -108,4 +109,330 @@ table { border-collapse: collapse; border-spacing: 0; }
     background: url("../images/required.gif?t=5.0.1395658634") no-repeat; 
     width:20px;
     height:9px;  
+}
+
+
+
+
+/*********************************
+ * mo30图标
+ *********************************/
+.mo-icon  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 30px;
+	height: 30px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 30px;
+	cursor: pointer;
+}
+/* 搜索 */
+.mo-icon-search {
+	background-position: 0px 0px;
+}
+.mo-icon-search:hover {
+	background-position: -30px 0px;
+}
+.mo-icon-search:active {
+	background-position: -60px 0px;
+}
+/* 打开 */
+.mo-icon-open {
+	background-position: -120px 0px;
+}
+.mo-icon-open:hover {
+	background-position: -150px 0px;
+}
+.mo-icon-open:active {
+	background-position: -180px 0px;
+}
+/* 编辑 */
+.mo-icon-edit {
+	background-position: -240px 0px;
+}
+.mo-icon-edit:hover {
+	background-position: -270px 0px;
+}
+.mo-icon-edit:active {
+	background-position: -300px 0px;
+}
+/* 解绑 */
+.mo-icon-unbound {
+	background-position: 0px -30px;
+}
+.mo-icon-unbound:hover {
+	background-position: -30px -30px;
+}
+.mo-icon-unbound:active {
+	background-position: -60px -30px;
+}
+/* 分组选择 */
+.mo-icon-select-group {
+	background-position: -120px -30px;
+}
+.mo-icon-select-group:hover {
+	background-position: -150px -30px;
+}
+.mo-icon-select-group:active {
+	background-position: -180px -30px;
+}
+/* 返回 */
+.mo-icon-return {
+	background-position: -240px -30px;
+}
+.mo-icon-return:hover {
+	background-position: -270px -30px;
+}
+.mo-icon-return:active {
+	background-position: -300px -30px;
+}
+/* 选择用户 */
+.mo-icon-select-user {
+	background-position: 0px -60px;
+}
+.mo-icon-select-user:hover {
+	background-position: -30px -60px;
+}
+.mo-icon-select-user:active {
+	background-position: -60px -60px;
+}
+/* 添加 */
+.mo-icon-add {
+	background-position: -120px -60px;
+}
+.mo-icon-add:hover {
+	background-position: -150px -60px;
+}
+.mo-icon-add:active {
+	background-position: -180px -60px;
+}
+/* 全选 */
+.mo-icon-select-all {
+	background-position: -240px -60px;
+}
+.mo-icon-select-all:hover {
+	background-position: -270px -60px;
+}
+.mo-icon-select-all:active {
+	background-position: -300px -60px;
+}
+/* 选择到右边 */
+.mo-icon-select2-right {
+	background-position: 0 -90px;
+}
+.mo-icon-select2-right:hover {
+	background-position: -30px -90px;
+}
+.mo-icon-select2-right:active {
+	background-position: -60px -90px;
+}
+/* 移除到左边 */
+.mo-icon-remove2-left {
+	background-position: -120px -90px;
+}
+.mo-icon-remove2-left:hover {
+	background-position: -150px -90px;
+}
+.mo-icon-remove2-left:active {
+	background-position: -180px -90px;
+}
+/* 全部移除 */
+.mo-icon-remove-all {
+	background-position: -240px -90px;
+}
+.mo-icon-remove-all:hover {
+	background-position: -270px -90px;
+}
+.mo-icon-remove-all:active {
+	background-position: -300px -90px;
+}
+
+
+/*********************************
+ * mo24图标
+ *********************************/
+.mo-icon24  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 24px;
+	height: 24px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 24px;
+	cursor: pointer;
+}
+/* 消息 */
+.mo-icon24-message {
+	background-position: 0px -160px;
+}
+.mo-icon24-message:hover {
+	background-position: -24px -160px;
+}
+.mo-icon24-message:active {
+	background-position: -48px -160px;
+}
+/* 设置 */
+.mo-icon24-setting {
+	background-position: -96px -160px;
+}
+.mo-icon24-setting:hover {
+	background-position: -120px -160px;
+}
+.mo-icon24-setting:active {
+	background-position: -144px -160px;
+}
+/* 退出 */
+.mo-icon24-exit {
+	background-position: -192px -160px;
+}
+.mo-icon24-exit:hover {
+	background-position: -216px -160px;
+}
+.mo-icon24-exit:active {
+	background-position: -240px -160px;
+}
+/* 默认头像 */
+.mo-icon24-default-portrait {
+	background-position: 0px -260px;
+}
+
+
+/*********************************
+ * mo23图标
+ *********************************/
+.mo-icon23  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 23px;
+	height: 23px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 23px;
+	cursor: pointer;
+}
+/* 关闭 */
+.mo-icon23-close {
+	background-position: 0px -224px;
+}
+.mo-icon23-close:hover {
+	background-position: -23px -224px;
+}
+.mo-icon23-close:active {
+	background-position: -46px -224px;
+}
+
+
+/*********************************
+ * mo21图标
+ *********************************/
+.mo-icon21  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 21px;
+	height: 20px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 20px;
+	cursor: pointer;
+}
+/* 上一页 */
+.mo-icon21-prev-page {
+	background-position: 0px -140px;
+}
+.mo-icon21-prev-page:hover {
+	background-position: -21px -140px;
+}
+.mo-icon21-prev-page:active {
+	background-position: -42px -140px;
+}
+/* 下一页 */
+.mo-icon21-next-page {
+	background-position: -84px -140px;
+}
+.mo-icon21-next-page:hover {
+	background-position: -105px -140px;
+}
+.mo-icon21-next-page:active {
+	background-position: -126px -140px;
+}
+
+
+/*********************************
+ * mo20图标
+ *********************************/
+.mo-icon20  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 20px;
+	height: 20px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 20px;
+	cursor: pointer;
+}
+/* 下拉按钮 */
+.mo-icon20-dropdown {
+	background-position: 0px -120px;
+}
+.mo-icon20-dropdown:hover {
+	background-position: -20px -120px;
+}
+.mo-icon20-dropdown:active {
+	background-position: -40px -120px;
+}
+/* 搜索 */
+.mo-icon20-search {
+	background-position: -80px -120px;
+}
+.mo-icon20-search:hover {
+	background-position: -100px -120px;
+}
+.mo-icon20-search:active {
+	background-position: -120px -120px;
+}
+/* 日历 */
+.mo-icon20-calendar {
+	background-position: -160px -120px;
+}
+.mo-icon20-calendar:hover {
+	background-position: -180px -120px;
+}
+.mo-icon20-calendar:active {
+	background-position: -200px -120px;
+}
+/* 添加 */
+.mo-icon20-add {
+	background-position: -240px -120px;
+}
+.mo-icon20-add:hover {
+	background-position: -260px -120px;
+}
+.mo-icon20-add:active {
+	background-position: -280px -120px;
+}
+
+
+/*********************************
+ * mo15图标
+ *********************************/
+.mo-icon15  {
+	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	width: 15px;
+	height: 15px;
+	text-indent: 999px;
+	overflow: hidden;
+	display: inline-block;
+	line-height: 15px;
+	cursor: pointer;
+}
+/* 下拉框标识 */
+.mo-icon15-combo {
+	background-position: 0px -209px;
+}
+.mo-icon15-combo:hover {
+	background-position: -15px -209px;
+}
+.mo-icon15-combo:active {
+	background-position: -30px -209px;
 }

@@ -93,7 +93,7 @@
 			<input type="text" id="name" name="name" class="input-text sep" mo-hint="姓名" maxlength="20">
 			<input type="text" id="email" name="email" class="input-text sep" mo-hint="邮箱" maxlength="20">
 			<input type="text" id="phone" name="phone" class="input-text sep" mo-hint="手机" maxlength="20">
-			<a href="javascript: doSearch()" class="easyui-linkbutton sep" iconCls="icon-search" plain="true"></a>
+			<div onclick="javascript: doSearch()" class="mo-icon mo-icon-search sep" ></div>
 		</div>
 		<div class="operate-bar">
 			<a href="javascript: doCreate()" class="btn btn-x btn-gray">新建</a>

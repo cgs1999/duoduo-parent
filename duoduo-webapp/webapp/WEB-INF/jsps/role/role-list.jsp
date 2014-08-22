@@ -82,7 +82,7 @@
 	<div id="tb" class="inline">
 		<div class="search-bar">
 			<input type="text" id="name" name="name" class="input-text" mo-hint="请输入角色名称" maxlength="20">
-			<a href="javascript: doSearch()" class="easyui-linkbutton" sep iconCls="icon-search" plain="true"></a>
+			<div onclick="javascript: doSearch()" class="mo-icon mo-icon-search sep" ></div>
 		</div>
 		<div class="operate-bar">
 			<a href="javascript: doCreate()" class="btn btn-x btn-gray">新建</a>

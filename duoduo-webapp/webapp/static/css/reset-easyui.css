@@ -40,13 +40,15 @@
 }
 
 .datagrid-toolbar .search-bar .input-text,.toolbar .search-bar .input-text{
-	 border:none;
+   outline: 0 none;
+   border:none;
    border-bottom:1px solid #949799;
    color: #616060;
-   font-size: 12px;
+   font-size: 11px;
    height: 24px;
    width: 110px;
    padding: 0px 0;
+   vertical-align: top;
 }
 .datagrid-toolbar .search-bar .input-text.active,.toolbar .search-bar .input-text.active{
   color:#2E8CC1;
