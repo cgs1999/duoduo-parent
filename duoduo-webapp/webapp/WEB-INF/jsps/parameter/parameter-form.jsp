@@ -182,7 +182,7 @@
             <table style="table-layout:fixed">
             <tbody>
               <tr>
-                <td class="title">参数值</td>
+                <td class="title">参数内容</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
                       <input class="e-input" type="text" id="value" name="value" value="${data.value}">

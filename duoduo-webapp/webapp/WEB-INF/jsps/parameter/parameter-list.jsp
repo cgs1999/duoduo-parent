@@ -82,8 +82,8 @@
 	<div id="tb" class="inline">
 		<div class="search-bar">
 			<input type="text" id="key" name="key" class="input-text" mo-hint="请输入参数标识" maxlength="20">
-			<input type="text" id="name" name="name" class="input-text" mo-hint="参数名称" maxlength="20">
-			<input type="text" id="value" name="value" class="input-text" mo-hint="参数值" maxlength="20">
+			<input type="text" id="name" name="name" class="input-text sep" mo-hint="参数名称" maxlength="20">
+			<input type="text" id="value" name="value" class="input-text sep" mo-hint="参数值" maxlength="20">
 			<div onclick="javascript: doSearch()" class="mo-icon mo-icon-search sep" ></div>
 		</div>
 		<div class="operate-bar">

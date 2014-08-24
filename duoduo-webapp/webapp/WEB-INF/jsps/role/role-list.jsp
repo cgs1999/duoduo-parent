@@ -36,14 +36,14 @@
 						return (value==1) ? "系统角色" : "自定义角色";
 					}
 				}, {
-					field : 'level',
-					title : '角色级别',
+					field : 'enable',
+					title : '启停状态',
 					width : 80,
 					formatter : function(value,row,index){
-						return (value==1) ? "管理员" : "操作员";
+						return (value==1) ? "启用" : "停用";
 					}
 				}, {
-					field : 'remark',
+					field : 'memo',
 					title : '备注',
 					width : 150
 				} ] ],

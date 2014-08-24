@@ -53,7 +53,7 @@ public class ParameterDao extends BaseDao {
 		return null;
 	}
 
-	private static final String getByKeySql = "select * from sys_parameter where key=?";
+	private static final String getByKeySql = "select * from sys_parameter where `key`=?";
 
 	/**
 	 * 根据key获取
@@ -68,7 +68,7 @@ public class ParameterDao extends BaseDao {
 		return null;
 	}
 
-	private static final String listByTypeSql = "select * from sys_parameter where type=?";
+	private static final String listByTypeSql = "select * from sys_parameter where `type`=?";
 
 	/**
 	 * 根据type获取列表
@@ -83,7 +83,7 @@ public class ParameterDao extends BaseDao {
 		return null;
 	}
 
-	private static final String insertSql = "insert into sys_parameter(key,name,value,type,memo,create_time,update_time) values"
+	private static final String insertSql = "insert into sys_parameter(`key`,`name`,`value`,`type`,`memo`,`create_time`,`update_time`) values"
 			+ "(?,?,?,?,?,now(),now())";
 
 	/**
@@ -111,8 +111,8 @@ public class ParameterDao extends BaseDao {
 		return parameter;
 	}
 
-	private static final String updateSql = "update sys_parameter set key=?,name=?,value=?,"
-			+ "type=?,memo=?,update_time=now() where id=?";
+	private static final String updateSql = "update sys_parameter set `key`=?,`name`=?,`value`=?,"
+			+ "`type`=?,`memo`=?,`update_time`=now() where `id`=?";
 
 	/**
 	 * 修改参数
@@ -143,18 +143,18 @@ public class ParameterDao extends BaseDao {
 		String queryByPageSql = "select * from sys_parameter where 1=1";
 
 		if (StringUtils.hasText(key)) {
-			countSql += " and key like :likeKey";
-			queryByPageSql += " and key like :likeKey";
+			countSql += " and `key` like :likeKey";
+			queryByPageSql += " and `key` like :likeKey";
 		}
 
 		if (StringUtils.hasText(name)) {
-			countSql += " and name like :likeName";
-			queryByPageSql += " and name like :likeName";
+			countSql += " and `name` like :likeName";
+			queryByPageSql += " and `name` like :likeName";
 		}
 
 		if (StringUtils.hasText(value)) {
-			countSql += " and value like :likeValue";
-			queryByPageSql += " and value like :likeValue";
+			countSql += " and `value` like :likeValue";
+			queryByPageSql += " and `value` like :likeValue";
 		}
 
 		queryByPageSql += " limit :start,:limit";
@@ -179,8 +179,8 @@ public class ParameterDao extends BaseDao {
 		String queryByPageSql = "select * from sys_parameter where 1=1";
 
 		if (StringUtils.hasText(searchKey)) {
-			countSql += " and ((key like :likeKey) or (name like :likeName) or (value like :likeValue))";
-			queryByPageSql += " and ((key like :likeKey) or (name like :likeName) or (value like :likeValue))";
+			countSql += " and ((key `like` :likeKey) or (`name` like :likeName) or (`value` like :likeValue))";
+			queryByPageSql += " and ((`key` like :likeKey) or (`name` like :likeName) or (`value` like :likeValue))";
 		}
 
 		queryByPageSql += " limit :start,:limit";
