@@ -48,6 +48,21 @@ CREATE TABLE `sys_resource` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资源表';
 
+drop table if exists `sys_parameter`;
+CREATE TABLE `sys_parameter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `key` varchar(30) NOT NULL COMMENT '参数标识',
+  `name` varchar(30) NOT NULL COMMENT '参数名称',
+  `type` varchar(20) NOT NULL COMMENT '参数类型',
+  `value` text DEFAULT '' COMMENT '参数值',
+  `memo` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`key`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='参数表';
+
 drop table if exists `sys_user_role`;
 CREATE TABLE `sys_user_role` (
   `user_id` int(11) NOT NULL COMMENT '用户ID',
