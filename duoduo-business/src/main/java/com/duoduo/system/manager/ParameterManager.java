@@ -22,14 +22,14 @@ public interface ParameterManager {
 
 	/**
 	 * 根据Key获取参数
-	 * @param account
+	 * @param key
 	 * @return
 	 */
 	public Parameter getByKey(String key);
 
 	/**
 	 * 根据Type获取参数
-	 * @param account
+	 * @param type
 	 * @return
 	 */
 	public List<Parameter> listByType(String type);
@@ -65,7 +65,7 @@ public interface ParameterManager {
 	/**
 	 * 分页查询参数列表（模糊查询，条件为：关键标识、名称、值）
 	 * @param key 关键标识
-	 * @param name 姓名
+	 * @param name 名称
 	 * @param value 值
 	 * @param page
 	 * @return
