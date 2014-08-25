@@ -88,7 +88,7 @@ public class LanguageDao extends BaseDao {
 		return null;
 	}
 
-	private static final String listAllSql = "select * from sys_language";
+	private static final String listAllSql = "select * from sys_language order by `order_index`";
 
 	/**
 	 * 获取所有
@@ -103,7 +103,7 @@ public class LanguageDao extends BaseDao {
 		return null;
 	}
 
-	private static final String listAllEnableSql = "select * from sys_language where enable=1";
+	private static final String listAllEnableSql = "select * from sys_language where enable=1 order by `order_index`";
 
 	/**
 	 * 获取所有启用
@@ -135,8 +135,8 @@ public class LanguageDao extends BaseDao {
 				int count = 1;
 				ps.setString(count++, language.getName());
 				ps.setString(count++, language.getI18nTag());
-				ps.setInt(count++, language.getOrderIndex());
-				ps.setInt(count++, language.getOrderIndex());
+				ps.setInt(count++, (language.getOrderIndex() == null) ? 0 : language.getOrderIndex());
+				ps.setInt(count++, (language.getEnable() == null) ? 0 : language.getEnable());
 				ps.setString(count++, language.getMemo());
 				return ps;
 			}
@@ -187,6 +187,7 @@ public class LanguageDao extends BaseDao {
 			queryByPageSql += " and `i18n_tag` like :likeI18nTag";
 		}
 
+		queryByPageSql += " order by `order_index`";
 		queryByPageSql += " limit :start,:limit";
 
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -212,6 +213,7 @@ public class LanguageDao extends BaseDao {
 			queryByPageSql += " and ((`name` like :likeName) or (`i18n_tag` like :likeI18nTag))";
 		}
 
+		queryByPageSql += " order by `order_index`";
 		queryByPageSql += " limit :start,:limit";
 
 		Map<String, Object> params = new HashMap<String, Object>();

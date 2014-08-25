@@ -18,6 +18,7 @@
 	
 	$(function() {
 		Mo.SubFrame.init();
+		$('input[type="radio"]').ezMark();
 
 		// 保存
 		$("#detail-btn-save").click(function() {
@@ -185,9 +186,9 @@
                 <td class="title">启停状态</td>
                 <td class="input">
                     <div class="checkDiv">
-                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${data.enable}"> checked</c:if> />
+                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${data.enable==1}"> checked</c:if> />
                       <label for="enableT">启用</label>
-                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${!data.enable}"> checked</c:if> />
+                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${data.enable!=1}"> checked</c:if> />
                       <label for="enableF">停用</label>
                     </div>
                 </td>
