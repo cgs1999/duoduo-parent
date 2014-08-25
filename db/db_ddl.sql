@@ -63,6 +63,21 @@ CREATE TABLE `sys_parameter` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='参数表';
 
+drop table if exists `sys_language`;
+CREATE TABLE `sys_language` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(30) NOT NULL COMMENT '参数名称',
+  `i18n_tag` varchar(30) NOT NULL COMMENT '语言标识',
+  `order_index` int(11) NOT NULL DEFAULT '0' COMMENT '排序索引',
+  `enable` int(1) NOT NULL DEFAULT '0' COMMENT '启停状态',
+  `memo` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `i18n_tag` (`i18n_tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='国际化语言表';
+
 drop table if exists `sys_user_role`;
 CREATE TABLE `sys_user_role` (
   `user_id` int(11) NOT NULL COMMENT '用户ID',
