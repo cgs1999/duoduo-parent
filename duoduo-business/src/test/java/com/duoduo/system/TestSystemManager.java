@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import com.duoduo.system.manager.TestLanguageManager;
+import com.duoduo.system.manager.TestParameterManager;
 import com.duoduo.system.manager.TestResourceManager;
 import com.duoduo.system.manager.TestRoleManager;
 import com.duoduo.system.manager.TestRoleResourceManager;
@@ -19,7 +21,7 @@ import com.duoduo.system.manager.TestUserRoleManager;
 @RunWith(Suite.class)
 @SuiteClasses({
 		TestUserManager.class, TestRoleManager.class, TestResourceManager.class, TestUserRoleManager.class,
-		TestRoleResourceManager.class
+		TestRoleResourceManager.class, TestParameterManager.class, TestLanguageManager.class
 })
 public class TestSystemManager {
 

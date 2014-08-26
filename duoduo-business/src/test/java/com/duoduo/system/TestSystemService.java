@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import com.duoduo.system.service.TestLanguageService;
+import com.duoduo.system.service.TestParameterService;
 import com.duoduo.system.service.TestResourceService;
 import com.duoduo.system.service.TestRoleService;
 import com.duoduo.system.service.TestUserService;
@@ -16,7 +18,8 @@ import com.duoduo.system.service.TestUserService;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-		TestUserService.class, TestRoleService.class, TestResourceService.class
+		TestUserService.class, TestRoleService.class, TestResourceService.class, TestParameterService.class,
+		TestLanguageService.class
 })
 public class TestSystemService {
 

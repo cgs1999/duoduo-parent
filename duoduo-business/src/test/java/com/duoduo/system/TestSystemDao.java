@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import com.duoduo.system.dao.TestLanguageDao;
+import com.duoduo.system.dao.TestParameterDao;
 import com.duoduo.system.dao.TestResourceDao;
 import com.duoduo.system.dao.TestRoleDao;
 import com.duoduo.system.dao.TestRoleResourceDao;
@@ -18,7 +20,8 @@ import com.duoduo.system.dao.TestUserRoleDao;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-		TestUserDao.class, TestRoleDao.class, TestResourceDao.class, TestUserRoleDao.class, TestRoleResourceDao.class
+		TestUserDao.class, TestRoleDao.class, TestResourceDao.class, TestUserRoleDao.class, TestRoleResourceDao.class,
+		TestParameterDao.class, TestLanguageDao.class
 })
 public class TestSystemDao {
 
