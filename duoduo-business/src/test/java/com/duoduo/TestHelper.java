@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.duoduo.core.model.IdEntity;
 import com.duoduo.core.vo.BaseVO;
+import com.duoduo.system.model.Parameter;
 import com.duoduo.system.model.Resource;
 import com.duoduo.system.model.Role;
 import com.duoduo.system.model.User;
@@ -134,6 +135,28 @@ public class TestHelper {
 		resource.setEnable(Boolean.FALSE);
 		resource.setMemo("删除记录");
 		return resource;
+	}
+
+	// 创建参数1
+	public static Parameter createParameter1() {
+		Parameter parameter = new Parameter();
+		parameter.setName("企业名称");
+		parameter.setKey("ENTERPRISE_NAME");
+		parameter.setType("系统参数");
+		parameter.setValue("上海多多工作室");
+		parameter.setMemo("白版机企业名称");
+		return parameter;
+	}
+
+	// 创建参数2
+	public static Parameter createParameter2() {
+		Parameter parameter = new Parameter();
+		parameter.setName("产品名称");
+		parameter.setKey("PRODUCT_NAME");
+		parameter.setType("系统参数");
+		parameter.setValue("多多演示系统");
+		parameter.setMemo("白版机产品名称");
+		return parameter;
 	}
 
 	// ***************************************
