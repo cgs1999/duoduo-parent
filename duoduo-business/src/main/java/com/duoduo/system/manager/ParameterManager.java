@@ -21,6 +21,13 @@ public interface ParameterManager {
 	public Parameter getById(String id);
 
 	/**
+	 * 根据Name获取参数
+	 * @param name
+	 * @return
+	 */
+	public Parameter getByName(String name);
+
+	/**
 	 * 根据Key获取参数
 	 * @param key
 	 * @return

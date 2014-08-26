@@ -36,6 +36,15 @@ public class ParameterServiceImpl implements ParameterService {
 	}
 
 	@Override
+	public ParameterVO getByName(String name) {
+		Parameter parameter = parameterManager.getByName(name);
+		if (parameter == null) {
+			return null;
+		}
+		return ParameterVO.fromEntity(parameter);
+	}
+
+	@Override
 	public ParameterVO getByKey(String key) {
 		Parameter parameter = parameterManager.getByKey(key);
 		if (parameter == null) {

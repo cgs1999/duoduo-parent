@@ -21,6 +21,13 @@ public interface ParameterService {
 	public ParameterVO getById(String id);
 
 	/**
+	 * 根据Name获取参数
+	 * @param name
+	 * @return
+	 */
+	public ParameterVO getByName(String name);
+
+	/**
 	 * 根据Key获取参数
 	 * @param key
 	 * @return

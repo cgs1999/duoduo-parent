@@ -53,6 +53,21 @@ public class ParameterDao extends BaseDao {
 		return null;
 	}
 
+	private static final String getByNameSql = "select * from sys_parameter where `name`=?";
+
+	/**
+	 * 根据name获取
+	 */
+	public Parameter getByName(String name) {
+		try {
+			Parameter parameter = super.getJdbcTemplate().queryForObject(getByNameSql, entityRowMapper, name);
+			return parameter;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	private static final String getByKeySql = "select * from sys_parameter where `key`=?";
 
 	/**
@@ -172,7 +187,7 @@ public class ParameterDao extends BaseDao {
 	}
 
 	/**
-	 * 分页查询用户列表（关键字模糊查询，模糊查询内容：帐号、姓名、电子邮箱、电话）
+	 * 分页查询参数列表（关键字模糊查询，模糊查询内容：关键字、名称、值）
 	 */
 	public Page<Parameter> pagingList(String searchKey, Page<Parameter> page) {
 		String countSql = "select count(id) from sys_parameter where 1=1";

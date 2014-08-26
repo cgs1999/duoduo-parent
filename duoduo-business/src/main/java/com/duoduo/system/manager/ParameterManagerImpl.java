@@ -28,6 +28,11 @@ public class ParameterManagerImpl implements ParameterManager {
 	}
 
 	@Override
+	public Parameter getByName(String name) {
+		return parameterDao.getByName(name);
+	}
+
+	@Override
 	public Parameter getByKey(String key) {
 		return parameterDao.getByKey(key);
 	}
