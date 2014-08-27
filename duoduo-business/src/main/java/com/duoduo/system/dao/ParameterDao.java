@@ -194,7 +194,7 @@ public class ParameterDao extends BaseDao {
 		String queryByPageSql = "select * from sys_parameter where 1=1";
 
 		if (StringUtils.hasText(searchKey)) {
-			countSql += " and ((key `like` :likeKey) or (`name` like :likeName) or (`value` like :likeValue))";
+			countSql += " and ((`key` like :likeKey) or (`name` like :likeName) or (`value` like :likeValue))";
 			queryByPageSql += " and ((`key` like :likeKey) or (`name` like :likeName) or (`value` like :likeValue))";
 		}
 

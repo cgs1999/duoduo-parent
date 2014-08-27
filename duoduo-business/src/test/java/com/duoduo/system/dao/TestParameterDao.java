@@ -76,10 +76,42 @@ public class TestParameterDao extends BaseTest {
 	}
 
 	@Test
+	public void test27PageList() {
+		Page<Parameter> page = new Page<Parameter>();
+		page = parameterDao.pagingList("ENTERPRISE_NAME", null, null, page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<Parameter>();
+		page = parameterDao.pagingList(null, "企业名称", null, page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<Parameter>();
+		page = parameterDao.pagingList(null, null, "上海多多工作室", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<Parameter>();
+		page = parameterDao.pagingList("ENTERPRISE_NAME", "企业名称", "上海多多工作室", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+	}
+
+	@Test
 	public void test28PageList() {
-		// 账号作为关键字进行搜索
 		Page<Parameter> page = new Page<Parameter>();
 		page = parameterDao.pagingList("ENTERPRISE_NAME", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<Parameter>();
+		page = parameterDao.pagingList("企业名称", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<Parameter>();
+		page = parameterDao.pagingList("上海多多工作室", page);
 		Assert.assertNotNull(page);
 		Assert.assertEquals(page.getRows().size(), 1);
 	}

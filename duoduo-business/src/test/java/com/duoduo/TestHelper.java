@@ -5,10 +5,13 @@ import java.util.UUID;
 
 import com.duoduo.core.model.IdEntity;
 import com.duoduo.core.vo.BaseVO;
+import com.duoduo.system.model.Language;
 import com.duoduo.system.model.Parameter;
 import com.duoduo.system.model.Resource;
 import com.duoduo.system.model.Role;
 import com.duoduo.system.model.User;
+import com.duoduo.system.vo.LanguageVO;
+import com.duoduo.system.vo.ParameterVO;
 import com.duoduo.system.vo.ResourceVO;
 import com.duoduo.system.vo.RoleVO;
 import com.duoduo.system.vo.UserVO;
@@ -159,6 +162,26 @@ public class TestHelper {
 		return parameter;
 	}
 
+	// 创建语言1
+	public static Language createLanguage1() {
+		Language language = new Language();
+		language.setName("闽南语");
+		language.setI18nTag("mingnan");
+		language.setEnable(0);
+		language.setMemo("福建南部方言");
+		return language;
+	}
+
+	// 创建语言2
+	public static Language createLanguage2() {
+		Language language = new Language();
+		language.setName("藏文");
+		language.setI18nTag("zangyu");
+		language.setEnable(0);
+		language.setMemo("西藏文字");
+		return language;
+	}
+
 	// ***************************************
 	// VO
 	// ***************************************
@@ -276,6 +299,48 @@ public class TestHelper {
 		resource.setOrderIndex(2010);
 		resource.setEnable(Boolean.FALSE);
 		return resource;
+	}
+
+	// 创建参数VO1
+	public static ParameterVO createParameterVO1() {
+		ParameterVO parameter = new ParameterVO();
+		parameter.setName("企业名称");
+		parameter.setKey("ENTERPRISE_NAME");
+		parameter.setType("系统参数");
+		parameter.setValue("上海多多工作室");
+		parameter.setMemo("白版机企业名称");
+		return parameter;
+	}
+
+	// 创建参数VO2
+	public static ParameterVO createParameterVO2() {
+		ParameterVO parameter = new ParameterVO();
+		parameter.setName("产品名称");
+		parameter.setKey("PRODUCT_NAME");
+		parameter.setType("系统参数");
+		parameter.setValue("多多演示系统");
+		parameter.setMemo("白版机产品名称");
+		return parameter;
+	}
+
+	// 创建语言VO1
+	public static LanguageVO createLanguageVO1() {
+		LanguageVO language = new LanguageVO();
+		language.setName("闽南语");
+		language.setI18nTag("mingnan");
+		language.setEnable(0);
+		language.setMemo("福建南部方言");
+		return language;
+	}
+
+	// 创建语言VO2
+	public static LanguageVO createLanguageVO2() {
+		LanguageVO language = new LanguageVO();
+		language.setName("藏文");
+		language.setI18nTag("zangyu");
+		language.setEnable(0);
+		language.setMemo("西藏文字");
+		return language;
 	}
 
 	/**

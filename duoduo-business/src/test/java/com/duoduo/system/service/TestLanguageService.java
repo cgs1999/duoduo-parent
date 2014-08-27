@@ -12,11 +12,10 @@ import org.junit.runners.MethodSorters;
 import com.duoduo.TestHelper;
 import com.duoduo.core.test.BaseTest;
 import com.duoduo.core.vo.Page;
-import com.duoduo.system.vo.RoleVO;
-import com.duoduo.system.vo.UserVO;
+import com.duoduo.system.vo.LanguageVO;
 
 /**
- * 角色管理Service
+ * 语言管理Service
  * @author chengesheng@gmail.com
  * @date 2014-7-21 下午4:53:24
  * @version 1.0.0
@@ -28,100 +27,112 @@ public class TestLanguageService extends BaseTest {
 	private static Long entityId2;
 
 	@Resource
-	private RoleService roleService;
-	@Resource
-	private UserService userService;
+	private LanguageService languageService;
 
 	@Test
 	public void test10Create() {
-		// 创建角色1
-		RoleVO role = roleService.create(TestHelper.createRoleVO1(null));
-
-		Assert.assertNotNull(role);
-		entityId1 = role.getId();
+		// 创建语言1
+		LanguageVO language = languageService.create(TestHelper.createLanguageVO1());
+		Assert.assertNotNull(language);
+		entityId1 = language.getId();
 		System.out.println("entityId1=" + entityId1);
 
-		// 创建角色2
-		role = roleService.create(TestHelper.createRoleVO2(null));
-
-		Assert.assertNotNull(role);
-		entityId2 = role.getId();
+		// 创建语言2
+		language = languageService.create(TestHelper.createLanguageVO2());
+		Assert.assertNotNull(language);
+		entityId2 = language.getId();
 		System.out.println("entityId2=" + entityId2);
 
 	}
 
 	@Test
 	public void test20GetById() {
-		RoleVO role = roleService.getById("" + entityId1);
-		Assert.assertNotNull(role);
-		Assert.assertEquals(role.getName(), "admin");
+		LanguageVO language = languageService.getById("" + entityId1);
+		Assert.assertNotNull(language);
+		Assert.assertEquals(language.getName(), "闽南语");
 	}
 
 	@Test
 	public void test22GetByName() {
-		RoleVO role = roleService.getByName("admin");
-		Assert.assertNotNull(role);
-		Assert.assertEquals(role.getId(), entityId1);
+		LanguageVO language = languageService.getByName("闽南语");
+		Assert.assertNotNull(language);
+		Assert.assertEquals(language.getId(), entityId1);
+	}
+
+	@Test
+	public void test23GetByI18nTag() {
+		LanguageVO language = languageService.getByI18nTag("mingnan");
+		Assert.assertNotNull(language);
+		Assert.assertEquals(language.getId(), entityId1);
 	}
 
 	@Test
 	public void test24ListAll() {
-		List<RoleVO> roleList = roleService.listAll();
-		Assert.assertNotNull(roleList);
-		Assert.assertEquals(roleList.size(), 2);
+		List<LanguageVO> languageList = languageService.listAll();
+		Assert.assertNotNull(languageList);
+		Assert.assertEquals(languageList.size(), 2);
 
-		TestHelper.printVOList(roleList);
+		TestHelper.printVOList(languageList);
 	}
 
 	@Test
-	public void test26ListByUserId() {
-		// 创建用户
-		UserVO user = userService.create(TestHelper.createUserVO1(entityId1 + "," + entityId2));
-		Assert.assertNotNull(user);
-		Long userId = user.getId();
+	public void test25ListAllEnable() {
+		List<LanguageVO> languageList = languageService.listAllEnable();
+		Assert.assertNotNull(languageList);
+		Assert.assertEquals(languageList.size(), 2);
 
-		List<RoleVO> roleList = roleService.listByUserId("" + userId);
-		Assert.assertNotNull(roleList);
-		Assert.assertEquals(roleList.size(), 2);
+		TestHelper.printVOList(languageList);
+	}
 
-		TestHelper.printVOList(roleList);
+	@Test
+	public void test27PageList() {
+		Page<LanguageVO> page = new Page<LanguageVO>();
+		page = languageService.pagingList("闽南语", null, page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
 
-		// 删除用户
-		userService.delete("" + userId);
+		page = new Page<LanguageVO>();
+		page = languageService.pagingList(null, "mingnan", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
+
+		page = new Page<LanguageVO>();
+		page = languageService.pagingList("闽南语", "mingnan", page);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(page.getRows().size(), 1);
 	}
 
 	@Test
 	public void test28PageList() {
-		// 账号作为关键字进行搜索
-		Page<RoleVO> page = new Page<RoleVO>();
-		page = roleService.pagingList("admin", page);
+		Page<LanguageVO> page = new Page<LanguageVO>();
+		page = languageService.pagingList("mingnan", page);
 		Assert.assertNotNull(page);
 		Assert.assertEquals(page.getRows().size(), 1);
 	}
 
 	@Test
 	public void test30Update() {
-		RoleVO role = roleService.getById("" + entityId1);
-		Assert.assertNotNull(role);
+		LanguageVO language = languageService.getById("" + entityId1);
+		Assert.assertNotNull(language);
 
-		role.setType("2");
-		role.setMemo("修改后的备注信息");
+		language.setEnable(1);
+		language.setMemo("修改后的备注信息");
 
-		roleService.update(role);
+		languageService.update(language);
 
-		role = roleService.getById("" + entityId1);
-		Assert.assertNotNull(role);
-		Assert.assertEquals(role.getType(), "2");
+		language = languageService.getById("" + entityId1);
+		Assert.assertNotNull(language);
+		Assert.assertEquals(language.getEnable().intValue(), 1);
 	}
 
 	@Test
 	public void test40Delete() {
-		Assert.assertTrue(roleService.delete("" + entityId1));
-		RoleVO role = roleService.getById("" + entityId1);
-		Assert.assertNull(role);
+		Assert.assertTrue(languageService.delete("" + entityId1));
+		LanguageVO language = languageService.getById("" + entityId1);
+		Assert.assertNull(language);
 
-		Assert.assertTrue(roleService.delete("" + entityId2));
-		role = roleService.getById("" + entityId2);
-		Assert.assertNull(role);
+		Assert.assertTrue(languageService.delete("" + entityId2));
+		language = languageService.getById("" + entityId2);
+		Assert.assertNull(language);
 	}
 }
