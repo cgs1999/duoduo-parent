@@ -9,6 +9,7 @@
 		<module>duoduo-core</module>
 		<module>duoduo-business</module>
 		<module>duoduo-webapp</module>
+		<module>duoduo-gencode</module>
 	</modules>
 
 	<!-- 相关参数 -->
