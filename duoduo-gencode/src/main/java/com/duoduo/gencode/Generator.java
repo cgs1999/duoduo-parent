@@ -178,11 +178,13 @@ public class Generator {
 				String attributeName = handlerColumnName(columnSet.getString("COLUMN_NAME"));
 				String columnType = columnSet.getString("TYPE_NAME");
 				String attributeType = handlerColumnType(columnSet.getString("TYPE_NAME"));
+				String comment = columnSet.getString("REMARKS");
 				Column column = new Column();
 				column.setColumnName(columnName);
 				column.setColumnType(columnType);
 				column.setAttributeName(attributeName);
 				column.setAttributeType(attributeType);
+				column.setComment(comment);
 				columns.add(column);
 
 				if (attributeType.startsWith("Date")) {

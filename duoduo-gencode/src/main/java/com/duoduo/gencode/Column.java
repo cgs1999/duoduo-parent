@@ -12,6 +12,7 @@ public class Column {
 	private String columnType;
 	private String attributeName;
 	private String attributeType;
+	private String comment;
 
 	public String getColumnName() {
 		return columnName;
@@ -43,6 +44,14 @@ public class Column {
 
 	public void setAttributeType(String attributeType) {
 		this.attributeType = attributeType;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }
