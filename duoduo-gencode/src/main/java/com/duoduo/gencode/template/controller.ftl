@@ -1,24 +1,99 @@
-package ${packageName};
+package ${packageName}.controller;
 
-import java.util.Date;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.duoduo.core.util.ResponseUtils;
+import com.duoduo.core.vo.Message;
+import com.duoduo.core.vo.Page;
+import ${packageName}.${beanName}Service;
+import ${packageName}.vo.${beanName}VO;
 
 /**
- * 对应表 ${tableName}
+ * ${beanName}Controller
  * @author chengesheng@gmail.com
  * @date ${currentDateTime}
  * @version 1.0.0
  */
-public class ${beanName} implements java.io.Serializable{
+@Controller
+@RequestMapping("/system/${beanName?uncap_first}")
+public class ${beanName}Controller {
 
- <#list columns as item>
-	private ${item.attributeType} ${item.attributeName};/*对应表中${item.columnName}*/
- </#list>
- <#list columns as item>  
-    public ${item.attributeType} get${item.attributeName?cap_first}(){  
-      return ${item.attributeName};  
-    }  
-    public void set${item.attributeName?cap_first}(${item.attributeType} ${item.attributeName}){  
-      this.${item.attributeName} = ${item.attributeName};  
-    }  
-  </#list>  
+	@Resource
+	private ${beanName}Service ${beanName?uncap_first}Service;
+
+	private String listPage = "${beanName?uncap_first}/${beanName?uncap_first}-list";
+	private String formPage = "${beanName?uncap_first}/${beanName?uncap_first}-form";
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list(ModelMap model) {
+		return listPage;
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String create(ModelMap model) {
+		return formPage;
+	}
+
+	@RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
+	public String form(ModelMap model, @PathVariable String id) {
+		if (StringUtils.hasText(id)) {
+			load(model, id);
+		}
+		return formPage;
+	}
+
+	@RequestMapping(value = "/getPageList", method = RequestMethod.POST)
+	public void getPageList(HttpServletResponse response, Page<${beanName}VO> page, String searchKey) {
+		page = ${beanName?uncap_first}Service.pagingList(name, searchKey);
+		ResponseUtils.renderJson(response, page);
+	}
+
+	@RequestMapping(value = "/listAll", method = RequestMethod.POST)
+	public void listAll(HttpServletResponse response) {
+		ResponseUtils.renderJson(response, ${beanName?uncap_first}Service.listAll());
+	}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public void save(HttpServletResponse response, ${beanName}VO ${beanName?uncap_first}VO) {
+		ResponseUtils.renderJson(response, save(${beanName?uncap_first}VO));
+	}
+
+	private void load(ModelMap model, String id) {
+		${beanName}VO ${beanName?uncap_first}VO = ${beanName?uncap_first}Service.getById(id);
+
+		model.addAttribute("data", ${beanName?uncap_first}VO);
+	}
+
+	private Message<String> save(${beanName}VO ${beanName?uncap_first}VO) {
+		Message<String> message = new Message<String>(true, "保存成功");
+
+		int nResult = -1;
+		if (${beanName?uncap_first}VO != null) {
+			if (${beanName?uncap_first}VO.getId() != null && ${beanName?uncap_first}VO.getId().longValue() != 0) {
+				${beanName?uncap_first}Service.update(${beanName?uncap_first}VO);
+				nResult = 1;
+			} else {
+				${beanName?uncap_first}VO = ${beanName?uncap_first}Service.create(${beanName?uncap_first}VO);
+				nResult = 2;
+			}
+		}
+
+		if (nResult < 0) {
+			message.setSuccess(false);
+			message.setDescription("保存失败，请联系管理员!");
+		} else {
+			message.setData(Integer.toString(nResult));
+		}
+
+		return message;
+	}
 }
