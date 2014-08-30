@@ -9,6 +9,7 @@
   <%@ include file="/inc/common/page_base_js.jsp"%>
   <!-- 插件部分 -->
   <%@ include file="/inc/plugins/plugin_easyui.jsp"%>
+  <%@ include file="/inc/plugins/plugin_artdialog.jsp"%>
   <!-- 其它 -->
   <%@ include file="/inc/common/page_subFrame.jsp"%>
  </head>
@@ -25,33 +26,23 @@
 					field : 'id',
 					hidden : true
 				}, {
-					field : 'name',
-					title : '语言名称',
+<#list columns as item>
+					field : '${item.attributeName}',
+					title : '${item.comment}',
 					width : 100
-				}, {
-					field : 'i18nTag',
-					title : '语言标识',
-					width : 80
-				}, {
-					field : 'orderIndex',
-					title : '排序索引',
-					width : 80
-				}, {
+				}, 
+</#list>
+				{
 					field : 'enable',
 					title : '启停状态',
 					width : 80,
 					formatter: function(value,rowIndex) {
 						return (value==1) ? "启用" : "停用";
 					}
-				}, {
-					field : 'memo',
-					title : '备注',
-					width : 150
-				} ] ],
+				}] ],
 
 				onBeforeLoad:function(params){
-					params.name = Mo.gridDetail.getMoInputVal("#name");
-					params.i18nTag = Mo.gridDetail.getMoInputVal("#i18nTag");
+					params.searckKey = Mo.gridDetail.getMoInputVal("#searckKey");
 					params.start = (params.page-1)*params.rows;
 					params.limit = params.rows;
 				}
@@ -83,8 +74,7 @@
 
 	<div id="tb" class="inline">
 		<div class="search-bar">
-			<input type="text" id="name" name="name" class="input-text" mo-hint="请输入语言名称" maxlength="20">
-			<input type="text" id="i18nTag" name="i18nTag" class="input-text sep" mo-hint="语言标识" maxlength="20">
+			<input type="text" id="searckKey" name="searckKey" class="input-text" mo-hint="请输入搜索内容" maxlength="20">
 			<div onclick="javascript: doSearch()" class="mo-icon mo-icon-search sep" ></div>
 		</div>
 		<div class="operate-bar">

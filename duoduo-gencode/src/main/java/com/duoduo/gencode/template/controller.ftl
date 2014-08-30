@@ -18,13 +18,13 @@ import ${packageName}.${beanName}Service;
 import ${packageName}.vo.${beanName}VO;
 
 /**
- * ${beanName}Controller
+ * ${beanName}Controller TODO
  * @author chengesheng@gmail.com
  * @date ${currentDateTime}
  * @version 1.0.0
  */
 @Controller
-@RequestMapping("/system/${beanName?uncap_first}")
+@RequestMapping("/system/${beanName?uncap_first}") // TODO
 public class ${beanName}Controller {
 
 	@Resource

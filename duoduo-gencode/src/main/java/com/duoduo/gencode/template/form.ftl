@@ -8,6 +8,7 @@
   <%@ include file="/inc/common/page_base_css.jsp"%>
   <%@ include file="/inc/common/page_base_js.jsp"%>
   <!-- 插件部分 -->
+  <%@ include file="/inc/plugins/plugin_easyui.jsp"%>
   <%@ include file="/inc/plugins/plugin_artdialog.jsp"%>
   <!-- detail部分 -->
   <%@ include file="/inc/common/page_subFrame.jsp"%>
@@ -97,24 +98,19 @@
 	function beforeSave() {
 		var data = {
 			id : $('#id').val(),
-			name : $.trim($('#name').val()),
-			i18nTag : $.trim($('#i18nTag').val()),
-			orderIndex : $.trim($('#orderIndex').val()),
-			enable : $('input:radio[name=enable]:checked').val(),
-			memo : $('#memo').val()
+<#list columns as item>
+			${item.attributeName} : $.trim($('#${item.attributeName}').val()),
+</#list>
+			enable : $('input:radio[name=enable]:checked').val()
 		};
 
 		if (data.name == "") {
-			$.dialog.tips('请输入语言名称');
+			$.dialog.tips('请输入名称');
 			$('#name').focus();
 			return false;
 		}
-
-		if (data.key == "") {
-			$.dialog.tips('请输入语言标识');
-			$('#key').focus();
-			return false;
-		}
+		
+		// TODO
 
 		return data;
 	}
@@ -129,7 +125,7 @@
 <div id="wrap-all" class="wrap-detail">
 	<div class="detail-body">
     <div class="detail-header">
-      <div class="title">语言信息</div>
+      <div class="title">${beanName}信息</div>
     </div>
     
     
@@ -137,48 +133,24 @@
       <div id="input-all">
       	<input type="hidden" id='id' name="id"  value="$\{data.id}" />
         <ul id="editor-ui">
+<#list columns as item>
           <li class="data-li">
             <table style="table-layout:fixed">
             <tbody>
               <tr>
-                <td class="title">语言名称</td>
+                <td class="title">${item.comment}</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
-                      <input class="e-input" type="text" id="name" name="name" value="$\{data.name}">
+                      <input class="e-input" type="text" id="${item.attributeName}" name="${item.attributeName}" value="$\{data.${item.attributeName}}">
                     </div>
                 </td>
                 <td class="operate"><div class="required"></div></td>
               </tr>
             </table>
           </li>
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">语言标识</td>
-                <td class="input">
-                    <div style="padding-right:10px;position:relative;">
-                      <input class="e-input" type="text" id="i18nTag" name="i18nTag" value="$\{data.i18nTag}">
-                    </div>
-                </td>
-                <td class="operate"><div class="required"></div></td>
-              </tr>
-            </table>
-          </li>
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">排序索引</td>
-                <td class="input">
-                    <div style="padding-right:10px;position:relative;">
-                      <input class="e-input" type="text" id="orderIndex" name="orderIndex" value="$\{data.orderIndex}">
-                    </div>
-                </td>
-                <td class="operate"></td>
-              </tr>
-            </table>
-          </li>
+          
+</#list>
+          <!-- TODO -->
           <li class="data-li">
             <table style="table-layout:fixed">
             <tbody>
@@ -190,20 +162,6 @@
                       <label for="enableT">启用</label>
                       <input type="radio" id="enableF" name="enable" value="0" <c:if test="$\{data.enable!=1}"> checked</c:if> />
                       <label for="enableF">停用</label>
-                    </div>
-                </td>
-                <td class="operate"></td>
-              </tr>
-            </table>
-          </li>
-          <li class="data-li">
-            <table style="table-layout:fixed">
-            <tbody>
-              <tr>
-                <td class="title">备　　注</td>
-                <td class="input">
-                    <div style="padding-right:10px;position:relative;">
-                      <textarea rows="3" cols="70" id="memo" name="memo" class="e-textarea">$\{data.memo}</textarea>
                     </div>
                 </td>
                 <td class="operate"></td>

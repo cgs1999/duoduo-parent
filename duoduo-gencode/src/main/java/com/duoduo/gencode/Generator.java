@@ -52,7 +52,9 @@ public class Generator {
 		Template entityTemplate = cfg.getTemplate("entity.ftl");
 		Template daoTemplate = cfg.getTemplate("dao.ftl");
 		Template managerTemplate = cfg.getTemplate("manager.ftl");
+		Template managerImplTemplate = cfg.getTemplate("managerImpl.ftl");
 		Template serviceTemplate = cfg.getTemplate("service.ftl");
+		Template serviceImplTemplate = cfg.getTemplate("serviceImpl.ftl");
 		Template voTemplate = cfg.getTemplate("vo.ftl");
 		Template controllerTemplate = cfg.getTemplate("controller.ftl");
 		Template formTemplate = cfg.getTemplate("form.ftl");
@@ -84,9 +86,19 @@ public class Generator {
 			managerTemplate.process(o, writer);
 			writer.close();
 
+			file = new File(outputPath + "/manager/" + o.get("beanName") + "ManagerImpl.java");
+			writer = new FileWriter(file);
+			managerImplTemplate.process(o, writer);
+			writer.close();
+
 			file = new File(outputPath + "/service/" + o.get("beanName") + "Service.java");
 			writer = new FileWriter(file);
 			serviceTemplate.process(o, writer);
+			writer.close();
+
+			file = new File(outputPath + "/service/" + o.get("beanName") + "ServiceImpl.java");
+			writer = new FileWriter(file);
+			serviceImplTemplate.process(o, writer);
 			writer.close();
 
 			file = new File(outputPath + "/vo/" + o.get("beanName") + "VO.java");

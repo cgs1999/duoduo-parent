@@ -1,24 +1,63 @@
-package ${packageName};
+package ${packageName}.manager;
 
-import java.util.Date;
+import java.util.List;
+
+import com.duoduo.core.vo.Page;
+import ${packageName}.model.${beanName};
 
 /**
- * 对应表 ${tableName}
+ * TODO 业务处理接口
  * @author chengesheng@gmail.com
  * @date ${currentDateTime}
  * @version 1.0.0
  */
-public class ${beanName} implements java.io.Serializable{
+public interface ${beanName}Manager {
 
- <#list columns as item>
-	private ${item.attributeType} ${item.attributeName};/*对应表中${item.columnName}*/
- </#list>
- <#list columns as item>  
-    public ${item.attributeType} get${item.attributeName?cap_first}(){  
-      return ${item.attributeName};  
-    }  
-    public void set${item.attributeName?cap_first}(${item.attributeType} ${item.attributeName}){  
-      this.${item.attributeName} = ${item.attributeName};  
-    }  
-  </#list>  
+	/**
+	 * 根据Id获取
+	 * @param id
+	 * @return
+	 */
+	public ${beanName} getById(String id);
+
+	/**
+	 * 根据Name获取
+	 * @param name
+	 * @return
+	 */
+	public ${beanName} getByName(String name);
+
+	/**
+	 * 获取所有
+	 * @return
+	 */
+	public List<${beanName}> listAll();
+
+	/**
+	 * 创建
+	 * @param ${beanName?uncap_first}
+	 * @return
+	 */
+	public ${beanName} create(final ${beanName} ${beanName?uncap_first});
+
+	/**
+	 * 修改
+	 * @param ${beanName?uncap_first}
+	 */
+	public void update(${beanName} ${beanName?uncap_first});
+
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+	public boolean delete(String id);
+
+	/**
+	 * 分页查询列表（关键字模糊查询，模糊查询内容：标识、名称）
+	 * @param searchKey
+	 * @param page
+	 * @return
+	 */
+	public Page<${beanName}> pagingList(String searchKey, Page<${beanName}> page);
 }

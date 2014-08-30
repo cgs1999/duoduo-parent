@@ -202,7 +202,7 @@ public class LanguageDao extends BaseDao {
 	}
 
 	/**
-	 * 分页查询用户列表（关键字模糊查询，模糊查询内容：帐号、姓名、电子邮箱、电话）
+	 * 分页查询语言列表（关键字模糊查询，模糊查询内容：名称、语言标识）
 	 */
 	public Page<Language> pagingList(String searchKey, Page<Language> page) {
 		String countSql = "select count(id) from sys_language where 1=1";
