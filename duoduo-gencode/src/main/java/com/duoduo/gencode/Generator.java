@@ -43,10 +43,11 @@ public class Generator {
 		cfg.setObjectWrapper(new DefaultObjectWrapper());
 	}
 
-	public void generator(String packageName, String outputPath) throws Exception {
+	public void generator(String outputPath, String packageName) throws Exception {
 		initial();
 
-		initPackage(outputPath);
+		String srcOutputPath = getSrcPath(outputPath, packageName);
+		initPackage(srcOutputPath);
 
 		cfg.setDefaultEncoding("utf-8");
 		Template entityTemplate = cfg.getTemplate("entity.ftl");
@@ -71,64 +72,75 @@ public class Generator {
 			o.put("currentDateTime", currentDateTime);
 
 			// 输出到文件
-			File file = new File(outputPath + "/model/" + o.get("beanName") + ".java");
+			File file = new File(srcOutputPath + "/model/" + o.get("beanName") + ".java");
 			Writer writer = new FileWriter(file);
 			entityTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/dao/" + o.get("beanName") + "Dao.java");
+			file = new File(srcOutputPath + "/dao/" + o.get("beanName") + "Dao.java");
 			writer = new FileWriter(file);
 			daoTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/manager/" + o.get("beanName") + "Manager.java");
+			file = new File(srcOutputPath + "/manager/" + o.get("beanName") + "Manager.java");
 			writer = new FileWriter(file);
 			managerTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/manager/" + o.get("beanName") + "ManagerImpl.java");
+			file = new File(srcOutputPath + "/manager/" + o.get("beanName") + "ManagerImpl.java");
 			writer = new FileWriter(file);
 			managerImplTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/service/" + o.get("beanName") + "Service.java");
+			file = new File(srcOutputPath + "/service/" + o.get("beanName") + "Service.java");
 			writer = new FileWriter(file);
 			serviceTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/service/" + o.get("beanName") + "ServiceImpl.java");
+			file = new File(srcOutputPath + "/service/" + o.get("beanName") + "ServiceImpl.java");
 			writer = new FileWriter(file);
 			serviceImplTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/vo/" + o.get("beanName") + "VO.java");
+			file = new File(srcOutputPath + "/vo/" + o.get("beanName") + "VO.java");
 			writer = new FileWriter(file);
 			voTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/controller/" + o.get("beanName") + "Controller.java");
+			file = new File(srcOutputPath + "/controller/" + o.get("beanName") + "Controller.java");
 			writer = new FileWriter(file);
 			controllerTemplate.process(o, writer);
 			writer.close();
 
 			String name = o.get("beanName").toString().toLowerCase();
-			file = new File(outputPath + "/jsps/" + name);
+			file = new File(outputPath + "/webapp/WEB-INF/jsps/" + name);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 
-			file = new File(outputPath + "/jsps/" + name + "/" + name + "-list.jsp");
+			file = new File(outputPath + "/webapp/WEB-INF/jsps/" + name + "/" + name + "-list.jsp");
 			writer = new FileWriter(file);
 			listTemplate.process(o, writer);
 			writer.close();
 
-			file = new File(outputPath + "/jsps/" + name + "/" + name + "-form.jsp");
+			file = new File(outputPath + "/webapp/WEB-INF/jsps/" + name + "/" + name + "-form.jsp");
 			writer = new FileWriter(file);
 			formTemplate.process(o, writer);
 			writer.close();
 
 			System.out.println("生成:" + o.get("beanName"));
 		}
+	}
+
+	/**
+	 * 源代码生成路径
+	 * @param outputPath
+	 * @param packageName
+	 * @return
+	 */
+	private String getSrcPath(String outputPath, String packageName) {
+		String srcPath = outputPath + (outputPath.endsWith("/") ? "" : "/") + "src/";
+		return srcPath + packageName.replace(".", "/");
 	}
 
 	/**
@@ -278,6 +290,6 @@ public class Generator {
 
 	public static void main(String[] args) throws Exception {
 		Generator gen = new Generator();
-		gen.generator("com.duoduo.frame", System.getProperty("user.dir") + "/src/com/duoduo/frame");
+		gen.generator(System.getProperty("user.dir") + "/gencode", "com.duoduo.frame");
 	}
 }

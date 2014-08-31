@@ -5,7 +5,7 @@ target/
 .classpath
 .project
 bin/
-frame/
+gencode/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
