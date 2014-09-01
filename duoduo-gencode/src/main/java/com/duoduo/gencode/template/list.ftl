@@ -15,7 +15,7 @@
  </head>
 
 <script>
-	var baseUrl = "$\{BMC_APP_URL\}/system/language";
+	var baseUrl = "${'$\{BMC_APP_URL}'}/system/language";
 
 	$(function() {
 		Mo.gridDetail.init({

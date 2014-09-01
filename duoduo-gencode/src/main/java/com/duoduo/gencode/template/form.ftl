@@ -15,7 +15,7 @@
  </head>
 
 <script type="text/javascript">
-	var baseUrl = "$\{BMC_APP_URL\}/system/language";
+	var baseUrl = "${'$\{BMC_APP_URL}'}/system/language";
 	
 	$(function() {
 		Mo.SubFrame.init();
@@ -99,7 +99,10 @@
 		var data = {
 			id : $('#id').val(),
 <#list columns as item>
+	<#assign attrName="${item.attributeName}" >
+	<#if attrName!="id" && attrName!="enable" && attrName!="createTime" && attrName!="updateTime">
 			${item.attributeName} : $.trim($('#${item.attributeName}').val()),
+	</#if>
 </#list>
 			enable : $('input:radio[name=enable]:checked').val()
 		};
@@ -131,9 +134,11 @@
     
     <div class= "detail-content">
       <div id="input-all">
-      	<input type="hidden" id='id' name="id"  value="$\{data.id}" />
+      	<input type="hidden" id='id' name="id"  value="${'$\{data.id}'}" />
         <ul id="editor-ui">
 <#list columns as item>
+	<#assign attrName="${item.attributeName}" >
+	<#if attrName!="id" && attrName!="enable" && attrName!="createTime" && attrName!="updateTime">
           <li class="data-li">
             <table style="table-layout:fixed">
             <tbody>
@@ -141,7 +146,7 @@
                 <td class="title">${item.comment}</td>
                 <td class="input">
                     <div style="padding-right:10px;position:relative;">
-                      <input class="e-input" type="text" id="${item.attributeName}" name="${item.attributeName}" value="$\{data.${item.attributeName}}">
+                      <input class="e-input" type="text" id="${item.attributeName}" name="${item.attributeName}" value="${'$\{data.'}${item.attributeName}}">
                     </div>
                 </td>
                 <td class="operate"><div class="required"></div></td>
@@ -149,6 +154,7 @@
             </table>
           </li>
           
+	</#if>
 </#list>
           <!-- TODO -->
           <li class="data-li">
@@ -158,9 +164,9 @@
                 <td class="title">启停状态</td>
                 <td class="input">
                     <div class="checkDiv">
-                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="$\{data.enable==1}"> checked</c:if> />
+                      <input type="radio" id="enableT" name="enable" value="1" <c:if test="${'$\{data.enable==1}'}"> checked</c:if> />
                       <label for="enableT">启用</label>
-                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="$\{data.enable!=1}"> checked</c:if> />
+                      <input type="radio" id="enableF" name="enable" value="0" <c:if test="${'$\{data.enable!=1}'}"> checked</c:if> />
                       <label for="enableF">停用</label>
                     </div>
                 </td>
@@ -174,7 +180,7 @@
   </div>
   <div class="detail-btn">
 	<div id="detail-btn-save" class="btn-gray btn-x btn-x-left">保存</div>
-	<div id="detail-btn-delete" class="btn-gray btn-x btn-x-left"  <c:if test="$\{data.id == null}">style="display: none"</c:if>>删除</div>
+	<div id="detail-btn-delete" class="btn-gray btn-x btn-x-left"  <c:if test="${'$\{data.id == null}'}">style="display: none"</c:if>>删除</div>
 	<div id="detail-btn-cancel" class="btn-gray btn-x">取消</div>
   </div>
 </div>
