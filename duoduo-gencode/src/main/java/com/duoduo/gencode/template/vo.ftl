@@ -13,11 +13,16 @@ import ${packageName}.model.${beanName};
 public class ${beanName}VO extends BaseVO {
 
 <#list columns as item>
+	<#assign attrName="${item.attributeName}" >
+	<#if attrName!="id" && attrName!="name" && attrName!="createTime" && attrName!="updateTime">
 	/** ${item.comment}, 对应表中${item.columnName} */
 	private ${item.attributeType} ${item.attributeName};
+	</#if>
 </#list>
 <#list columns as item>
-
+	<#assign attrName="${item.attributeName}" >
+	<#if attrName!="id" && attrName!="name" && attrName!="createTime" && attrName!="updateTime">
+	
 	public ${item.attributeType} get${item.attributeName?cap_first}() {  
 		return ${item.attributeName};
 	}
@@ -25,6 +30,7 @@ public class ${beanName}VO extends BaseVO {
 	public void set${item.attributeName?cap_first}(${item.attributeType} ${item.attributeName}) {  
 		this.${item.attributeName} = ${item.attributeName};
 	}
+	</#if>
 </#list>
 
 	/**
@@ -35,7 +41,10 @@ public class ${beanName}VO extends BaseVO {
 		${beanName}VO vo = new ${beanName}VO();
 		vo.setId(entity.getId());
 	<#list columns as item>
+		<#assign attrName="${item.attributeName}" >
+		<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 		vo.set${item.attributeName?cap_first}(entity.get${item.attributeName?cap_first}());
+		</#if>
 	</#list>
 		vo.setCreateTime(DateUtils.toDatetimeString(entity.getCreateTime()));
 		vo.setUpdateTime(DateUtils.toDatetimeString(entity.getUpdateTime()));
@@ -48,8 +57,12 @@ public class ${beanName}VO extends BaseVO {
 	 */
 	public static ${beanName} toEntity(${beanName}VO vo) {
 		${beanName} entity = new ${beanName}();
+		entity.setId(vo.getId());
 	<#list columns as item>
+		<#assign attrName="${item.attributeName}" >
+		<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 		entity.set${item.attributeName?cap_first}(vo.get${item.attributeName?cap_first}());
+		</#if>
 	</#list>
 		return entity;
 	}

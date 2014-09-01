@@ -2,9 +2,12 @@ package ${packageName}.service;
 
 import java.util.ArrayList;
 import java.util.List;
+<#assign beanName="${beanName}" >
+<#if beanName!="Resource">
 
 import javax.annotation.Resource;
 
+</#if>
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,7 @@ import ${packageName}.vo.${beanName}VO;
 @Service("${beanName?uncap_first}Service")
 public class ${beanName}ServiceImpl implements ${beanName}Service {
 
-	@Resource
+	@<#if beanName=="Resource">javax.annotation.</#if>Resource
 	private ${beanName}Manager ${beanName?uncap_first}Manager;
 
 	@Override
@@ -72,13 +75,6 @@ public class ${beanName}ServiceImpl implements ${beanName}Service {
 	@Override
 	public Page<${beanName}VO> pagingList(String searchKey, Page<${beanName}VO> page) {
 		Page<${beanName}> entityPage = ${beanName?uncap_first}Manager.pagingList(searchKey, toEntityPage(page));
-
-		return fromEntityPage(entityPage);
-	}
-
-	@Override
-	public Page<${beanName}VO> pagingList(String name, String i18nTag, Page<${beanName}VO> page) {
-		Page<${beanName}> entityPage = ${beanName?uncap_first}Manager.pagingList(name, i18nTag, toEntityPage(page));
 
 		return fromEntityPage(entityPage);
 	}

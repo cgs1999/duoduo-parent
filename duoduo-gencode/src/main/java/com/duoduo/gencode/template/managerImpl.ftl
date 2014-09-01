@@ -2,8 +2,11 @@ package ${packageName}.manager;
 
 import java.util.List;
 
+<#assign beanName="${beanName}" >
+<#if beanName!="Resource">
 import javax.annotation.Resource;
 
+</#if>
 import org.springframework.stereotype.Service;
 
 import com.duoduo.core.vo.Page;
@@ -19,7 +22,7 @@ import ${packageName}.model.${beanName};
 @Service("${beanName?uncap_first}Manager")
 public class ${beanName}ManagerImpl implements ${beanName}Manager {
 
-	@Resource
+	@<#if beanName=="Resource">javax.annotation.</#if>Resource
 	private ${beanName}Dao ${beanName?uncap_first}Dao;
 
 	@Override

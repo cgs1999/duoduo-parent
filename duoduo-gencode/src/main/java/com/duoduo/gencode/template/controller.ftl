@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.duoduo.core.util.ResponseUtils;
 import com.duoduo.core.vo.Message;
 import com.duoduo.core.vo.Page;
-import ${packageName}.${beanName}Service;
+import ${packageName}.service.${beanName}Service;
 import ${packageName}.vo.${beanName}VO;
 
 /**
@@ -53,7 +53,7 @@ public class ${beanName}Controller {
 
 	@RequestMapping(value = "/getPageList", method = RequestMethod.POST)
 	public void getPageList(HttpServletResponse response, Page<${beanName}VO> page, String searchKey) {
-		page = ${beanName?uncap_first}Service.pagingList(name, searchKey);
+		page = ${beanName?uncap_first}Service.pagingList(searchKey, page);
 		ResponseUtils.renderJson(response, page);
 	}
 

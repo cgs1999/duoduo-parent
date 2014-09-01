@@ -33,9 +33,16 @@ public class ${beanName}Dao extends BaseDao {
 		@Override
 		public ${beanName} mapRow(ResultSet rs, int rowNum) throws SQLException {
 			final ${beanName} entity = new ${beanName}();
-		<#list columns as item>
+	<#list columns as item>
+		<#assign attrType="${item.attributeType}" >
+		<#if attrType=="Integer">
+			entity.set${item.attributeName?cap_first}(rs.getInt("${item.columnName}"));
+		<#elseif attrType=="Date">
+			entity.set${item.attributeName?cap_first}(rs.getTimestamp("${item.columnName}"));
+		<#else>
 			entity.set${item.attributeName?cap_first}(rs.get${item.attributeType}("${item.columnName}"));
-		</#list>
+		</#if>
+	</#list>
 			return entity;
 		}
 	};
@@ -86,13 +93,19 @@ public class ${beanName}Dao extends BaseDao {
 
 	private static final String insertSql = "insert into ${tableName}(" + 
 		<#list columns as item>
+			<#assign attrName="${item.attributeName}" >
+			<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 			"`${item.columnName}`," + 
+			</#if>
 		</#list>
 			"`create_time`,`update_time`) values (" + 
 		<#list columns as item>
+			<#assign attrName="${item.attributeName}" >
+			<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 			"?," + 
+			</#if>
 		</#list>
-			",now(),now())"; // TODO
+			"now(),now())";
 
 	/**
 	 * 创建
@@ -106,9 +119,17 @@ public class ${beanName}Dao extends BaseDao {
 					"id"
 				});
 				int count = 1;
-			<#list columns as item>
+	<#list columns as item>
+		<#assign attrName="${item.attributeName}" >
+		<#assign attrType="${item.attributeType}" >
+		<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
+			<#if attrType=="Integer">
+				ps.setInt(count++, ${beanName?uncap_first}.get${item.attributeName?cap_first}());
+			<#else>
 				ps.set${item.attributeType}(count++, ${beanName?uncap_first}.get${item.attributeName?cap_first}());
-			</#list>
+			</#if>
+		</#if>
+	</#list>
 				return ps;
 			}
 		}, keyHolder);
@@ -119,7 +140,10 @@ public class ${beanName}Dao extends BaseDao {
 
 	private static final String updateSql = "update ${tableName} set " + 
 		<#list columns as item>
+			<#assign attrName="${item.attributeName}" >
+			<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 			"`${item.columnName}`=?," + 
+			</#if>
 		</#list>
 			"`update_time`=now() where `id`=?"; // TODO
 
@@ -130,7 +154,10 @@ public class ${beanName}Dao extends BaseDao {
 		// TODO
 		Object[] args = new Object[] {
 			<#list columns as item>
+				<#assign attrName="${item.attributeName}" >
+				<#if attrName!="id" && attrName!="createTime" && attrName!="updateTime">
 				${beanName?uncap_first}.get${item.attributeName?cap_first}(),
+				</#if>
 			</#list>
 				${beanName?uncap_first}.getId()
 		};
