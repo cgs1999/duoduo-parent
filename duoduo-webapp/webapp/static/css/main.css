@@ -50,7 +50,7 @@
 }
 
 .hd-main .navs .navs-i b{
-    background: url("../images/head-arrow.png?t=5.0.1524705993") no-repeat;
+    background: url("../images/head-arrow.png?t=1.0.0.0_1524705993") no-repeat;
     height:3px;
     width: 5px;
     display: inline-block;
@@ -103,7 +103,7 @@
 }
 
 .hd-main .info .icon{
-  background:url("../images/head-setting.png?t=5.0.3219390735") no-repeat;
+  background:url("../images/head-setting.png?t=1.0.0.0_398545277") no-repeat;
   width:24px;
   height:24px;
   font-size: 0;
@@ -154,7 +154,7 @@
 }
 
 .hd-main .pulldown .pulldown-arrow{
-  background: url("../images/head-drop-arrow.png?t=5.0.1975907832") no-repeat;
+  background: url("../images/head-drop-arrow.png?t=1.0.0.0_1975907832") no-repeat;
   position: absolute;
   height:8px;
   width:8px;
@@ -177,7 +177,7 @@
 }
 
 .hd-main .info .setting-list .li s{
-    background: url("../images/head-drop.png?t=5.0.3563535147") no-repeat;
+    background: url("../images/head-drop.png?t=1.0.0.0_3563535147") no-repeat;
     display: block;
     width:16px;
     height:16px;
@@ -258,7 +258,7 @@
 
 
 #e-bn-fold {
-	background-image: url("../images/icon-bar.png?t=5.0.194052595");
+	background-image: url("../images/icon-bar.png?t=1.0.0.0_194052595");
     background-position: 0px 0px;
     cursor: pointer;
     height: 49px;
@@ -295,7 +295,7 @@
 
 .line{
   height:2px;
-  background: url("../images/line-aside.png?t=5.0.2352942643");
+  background: url("../images/line-aside.png?t=1.0.0.0_2352942643");
 }
 
 .search-div{
@@ -358,7 +358,7 @@
 }
 
 .menu li.selected a{
-  background: url("../images/aside-selected.png?t=5.0.3404059134") no-repeat #53AFE4;
+  background: url("../images/aside-selected.png?t=1.0.0.0_3404059134") no-repeat #53AFE4;
   color:#fff;
 }
 

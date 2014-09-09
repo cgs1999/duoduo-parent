@@ -10,7 +10,7 @@
   <!-- 插件部分 -->
   <%@ include file="/inc/plugins/plugin_artdialog.jsp"%>
   <!-- 本地 -->
-  <script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/mainFrame.js?t=5.0.3316434933"></script>
+  <script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/mainFrame.js?t=1.0.0.0_602309801"></script>
  </head>
  
 <script>
@@ -28,9 +28,9 @@ $(function(){
 <body>
 <div id="wrap-all" class="wrap-all">
 	<div id="header" class="hd-main">
-		<a class="logo" href="#"><img src="${RESOUCE_STATIC_URL}/images/logo_title.png" width="116" height="60" />/&nbsp;&nbsp;科达视讯云</a>
+		<a class="logo" href="#"><img src="${RESOUCE_STATIC_URL}/images/logo_title.png?t=1.0.0.0_1840699147" width="116" height="60" />/&nbsp;&nbsp;科达视讯云</a>
     <div class="info">
-      <a class="info-i user-info"><img src="${RESOUCE_STATIC_URL}/images/avator.png" />张三</a>
+      <a class="info-i user-info"><img src="${RESOUCE_STATIC_URL}/images/avator.png?t=1.0.0.0_567816914" />张三</a>
       <div class="info-i setting">
 			<a class="info-i setting-info icon">设置</a>
 			<div class="pulldown setting-list" style="display:none">

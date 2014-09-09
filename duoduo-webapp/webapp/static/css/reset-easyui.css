@@ -83,7 +83,7 @@
 }
 
 .datagrid-header td, .datagrid-header td.datagrid-header-over{
-  background: url("../images/table_head_td.png?t=5.0.3978328151") no-repeat #fff;
+  background: url("../images/table_head_td.png?t=1.0.0.0_3978328151") no-repeat #fff;
   color:#8B8B8B;
   cursor: default;
 }
@@ -117,7 +117,7 @@
 }
 
 .datagrid-row-selected {
-    background: url("../images/table-body-td.png?t=5.0.3552141330") repeat-y #5EB9EF;
+    background: url("../images/table-body-td.png?t=1.0.0.0_3552141330") repeat-y #5EB9EF;
     color: #fff;
 }
 
@@ -176,7 +176,7 @@
     height:20px;
 }
 .pagination-prev,.pagination-next{
-    background: url("../images/easyui/pagination_icons.png?t=5.0.270688469") no-repeat;
+    background: url("../images/easyui/pagination_icons.png?t=1.0.0.0_270688469") no-repeat;
 }
 .pagination-prev{
     background-position: 0 -20px;
@@ -233,7 +233,7 @@
 }
 
 .tree-expanded,.tree-expanded-hover,.tree-collapsed,.tree-collapsed-hover{
-   background: url("../images/easyui/tree_icons.png?t=5.0.2962950376") no-repeat;
+   background: url("../images/easyui/tree_icons.png?t=1.0.0.0_2962950376") no-repeat;
 }
 
 .tree-expanded {
@@ -252,7 +252,7 @@
     background:none;
 }
 .tree-node-selected .tree-title{
-    background: url("../images/aside-selected.png?t=5.0.3404059134") no-repeat scroll 0 0 #53AFE4;
+    background: url("../images/aside-selected.png?t=1.0.0.0_3404059134") no-repeat scroll 0 0 #53AFE4;
     color: #fff;
 }
 

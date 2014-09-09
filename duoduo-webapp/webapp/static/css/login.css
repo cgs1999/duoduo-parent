@@ -4,7 +4,7 @@ html,body {
 }
 
 #wrapper {
-	background: url("../images/login/login-bg.png?t=5.0.1874429097") no-repeat scroll 0 transparent;
+	background: url("../images/login/login-bg.png?t=1.0.0.0_1874429097") no-repeat scroll 0 transparent;
 	min-height: 100%;
     position: relative;
 }
@@ -22,7 +22,7 @@ html,body {
 }
 
 .header-left .ent {
-	background: url("../images/logo.png?t=5.0.3459290009") no-repeat scroll 0 transparent;
+	background: url("../images/logo.png?t=1.0.0.0_3459290009") no-repeat scroll 0 transparent;
 	display: inline-block;
 	height: 15px;
 	margin: 0 0 -2px;
@@ -54,7 +54,7 @@ html,body {
 }
 
 .header-right .item-setting-language .arrow-down {
-	background-image: url("../images/login/arrow-down.png?t=5.0.1092411509");
+	background-image: url("../images/login/arrow-down.png?t=1.0.0.0_1092411509");
     display: inline-block;
     height: 16px;
     margin: 0 3px -3px;
@@ -74,7 +74,7 @@ a.arrow-down:active {
 }
 
 .item-language-list .arrow-up-icon {
-	background: url("../images/login/arrow-up.png?t=5.0.2387269256") no-repeat scroll 0 transparent;
+	background: url("../images/login/arrow-up.png?t=1.0.0.0_2387269256") no-repeat scroll 0 transparent;
 	height: 6px;
 	left: 16px;
     position: absolute;
@@ -109,7 +109,7 @@ a.arrow-down:active {
 }
 
 .header-right .item-forgot-password .forgot-password-icon {
-	background: url("../images/login/forgot-password-icon.png?t=5.0.1715431884") no-repeat scroll 0 transparent;
+	background: url("../images/login/forgot-password-icon.png?t=1.0.0.0_1715431884") no-repeat scroll 0 transparent;
     display: inline-block;
     height: 16px;
     margin: 0 3px -3px;
@@ -197,19 +197,19 @@ a.arrow-down:active {
 }
 
 .item-account .username-icon {
-	background: url("../images/login/username-icon.png?t=5.0.400404823") no-repeat scroll 0 transparent;
+	background: url("../images/login/username-icon.png?t=1.0.0.0_400404823") no-repeat scroll 0 transparent;
     top: 7px;
     *top: 8px;
 }
 
 .item-password .password-icon {
-	background: url("../images/login/password-icon.png?t=5.0.1344708797") no-repeat scroll 0 transparent;
+	background: url("../images/login/password-icon.png?t=1.0.0.0_1344708797") no-repeat scroll 0 transparent;
     top: 7px;
     *top: 8px;
 }
 
 .item-verifyCode .verifycode-icon {
-	background: url("../images/login/verifycode-icon.png?t=5.0.594711635") no-repeat scroll 0 transparent;
+	background: url("../images/login/verifycode-icon.png?t=1.0.0.0_594711635") no-repeat scroll 0 transparent;
     top: 7px;
 }
 
@@ -231,7 +231,7 @@ a.arrow-down:active {
 }
 
 #login-wrapper .msg-div .msg-icon {
-	background: url("../images/login/msg-icon.png?t=5.0.1969429318") no-repeat scroll 0 transparent;
+	background: url("../images/login/msg-icon.png?t=1.0.0.0_1969429318") no-repeat scroll 0 transparent;
 	display: inline-block;
     height: 18px;
     vertical-align: middle;
@@ -313,7 +313,7 @@ a.btn-login:hover, a.btn-forgotPassword:hover {
 }
 
 .item-reg-email .reg-email-icon {
-	background: url("../images/login/email-icon.png?t=5.0.1419972636") no-repeat scroll 0 transparent;
+	background: url("../images/login/email-icon.png?t=1.0.0.0_1419972636") no-repeat scroll 0 transparent;
     top: 7px;
     *top: 8px;
 }
@@ -361,7 +361,7 @@ a.btn-login:hover, a.btn-forgotPassword:hover {
 }
 
 #forgotPassword-wrapper .msg-div .msg-icon {
-	background: url("../images/login/msg-icon.png?t=5.0.1969429318") no-repeat scroll 0 transparent;
+	background: url("../images/login/msg-icon.png?t=1.0.0.0_1969429318") no-repeat scroll 0 transparent;
 	display: inline-block;
     height: 18px;
     vertical-align: middle;

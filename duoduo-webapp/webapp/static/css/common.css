@@ -36,7 +36,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 
 .W_close {
-    background: url("../images/layer-close.png?t=5.0.3890385384") no-repeat scroll 0 transparent;
+    background: url("../images/layer-close.png?t=1.0.0.0_3890385384") no-repeat scroll 0 transparent;
     display: inline-block;
     height: 13px;
     position: absolute;
@@ -78,7 +78,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 }
 
 .btn-gray:hover,.btn-gray.hover{
-    background: url("../images/btn-bg-normal.png?t=5.0.2613065861") repeat-y 0 0 #53AFE4;
+    background: url("../images/btn-bg-normal.png?t=1.0.0.0_2613065861") repeat-y 0 0 #53AFE4;
     border-color: transparent;
     color:#fff;
 }
@@ -106,7 +106,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 }
 
 .required{
-    background: url("../images/required.gif?t=5.0.1395658634") no-repeat; 
+    background: url("../images/required.gif?t=1.0.0.0_1395658634") no-repeat; 
     width:20px;
     height:9px;  
 }
@@ -118,7 +118,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo30图标
  *********************************/
 .mo-icon  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 30px;
 	height: 30px;
 	text-indent: 999px;
@@ -253,7 +253,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo24图标
  *********************************/
 .mo-icon24  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 24px;
 	height: 24px;
 	text-indent: 999px;
@@ -302,7 +302,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo23图标
  *********************************/
 .mo-icon23  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 23px;
 	height: 23px;
 	text-indent: 999px;
@@ -327,7 +327,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo21图标
  *********************************/
 .mo-icon21  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 21px;
 	height: 20px;
 	text-indent: 999px;
@@ -362,7 +362,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo20图标
  *********************************/
 .mo-icon20  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 20px;
 	height: 20px;
 	text-indent: 999px;
@@ -417,7 +417,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  * mo15图标
  *********************************/
 .mo-icon15  {
-	background: url("../images/mo-small-images.png?t=5.0.3416513768") no-repeat;
+	background: url("../images/mo-small-images.png?t=1.0.0.0_3698749863") no-repeat;
 	width: 15px;
 	height: 15px;
 	text-indent: 999px;

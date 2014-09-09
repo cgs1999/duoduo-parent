@@ -5,10 +5,10 @@
 <head>
 <title><spring:message code="login.head.title" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<link rel="stylesheet" href="${RESOUCE_STATIC_URL}/css/common.min.css?t=5.0.1776366324"/>
-<link rel="stylesheet" href="${RESOUCE_STATIC_URL}/css/login.min.css?t=5.0.2397414766"/>
+<link rel="stylesheet" href="${RESOUCE_STATIC_URL}/css/common.min.css?t=1.0.0.0_2559113971"/>
+<link rel="stylesheet" href="${RESOUCE_STATIC_URL}/css/login.min.css?t=1.0.0.0_1026531654"/>
 <%@ include file="/inc/common/page_base_js.jsp"%>
-<script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/login.min.js?t=5.0.2995151809"></script>
+<script type="text/javascript" src="${RESOUCE_STATIC_URL}/js/login.min.js?t=1.0.0.0_2913390208"></script>
 <script type="text/javascript">
 if(top.location.href != location.href) {
 	top.location.href = location.href;

@@ -46,7 +46,7 @@
         </source>
 		-->
 		
-		<source src="C:\demo" fileExt="css,js,jsp,html,htm,vm" ingorePath="C:\demo\static\app\jslib,C:\demo\error"/>
+		<source src="F:\GitHub\duoduo-parent\duoduo-webapp\webapp" fileExt="css,js,jsp,html,htm,vm" ingorePath="F:\GitHub\duoduo-parent\duoduo-webapp\webapp\static\jlib"/>
 		<!--
 		<source src="C:\demo\static\common" fileExt="css,js,jsp,html,htm,vm"/>
 		-->
@@ -64,9 +64,10 @@
         <tag name="APP_BASE_URL" value="C:\demo\" />
 		-->
 		
-        <tag name="RESOUCE_STATIC_URL" value="C:\demo\static" />
-        <tag name="APP_BASE_URL" value="C:\demo" />
-        <tag name="APP_RESOUCE_URL" value="C:\demo\static\common" />
+        <tag name="RESOUCE_STATIC_URL" value="F:\GitHub\duoduo-parent\duoduo-webapp\webapp\static" />
+        <tag name="APP_BASE_URL" value="F:\GitHub\duoduo-parent\duoduo-webapp\webapp" />
+        <tag name="APP_RESOUCE_URL" value="F:\GitHub\duoduo-parent\duoduo-webapp\webapp\static\js" />
+        <tag name="RESOUCE_LANGUAGE" value="zh_CN" />
     </tags>
     
     <!-- 内容匹配规则 -->
