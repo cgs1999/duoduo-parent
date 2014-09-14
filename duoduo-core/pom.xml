@@ -8,4 +8,18 @@
 	<artifactId>duoduo-core</artifactId>
 	<packaging>jar</packaging>
 	<name>duoduo-core</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.flyway</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 </project>
